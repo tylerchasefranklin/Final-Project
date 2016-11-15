@@ -3,11 +3,12 @@ var $ = require('jquery');
 var React = require('react');
 var ReactDOM = require('react-dom');
 var SignUpLoginContainer = require('./components/login.jsx').SignUpLoginContainer;
+var QuoteGenerator = require('./components/quotegenerator.jsx').QuoteGenerator;
 
 var AppRouter = Backbone.Router.extend({
   routes: {
     '': 'index',
-    'login/': 'login'
+    'home/': 'home'
   },
   initialize: function(response){
     $.ajaxSetup({
@@ -24,6 +25,12 @@ var AppRouter = Backbone.Router.extend({
     // console.log('index screen working');
     ReactDOM.render(
       React.createElement(SignUpLoginContainer),
+      document.getElementById('app')
+    );
+  },
+  home: function(){
+    ReactDOM.render(
+      React.createElement(QuoteGenerator),
       document.getElementById('app')
     );
   },

@@ -46,10 +46,10 @@ var User = ParseModel.extend({
     var username = this.get('username');
     var password = this.get('password');
 
-    this.save().then(function(data){
-      console.log(data);
-      localStorage.setItem('user', JSON.stringify(self.toJSON()));
-    });
+    // this.save().then(function(data){
+    //   console.log(data);
+    //   localStorage.setItem('user', JSON.stringify(self.toJSON()));
+    // });
   }
 });
 
@@ -57,3 +57,8 @@ var UserCollection = ParseCollection.extend({
   model: User,
   url: 'https://spider-man.herokuapp.com/classes/User'
 });
+
+module.exports = {
+  User: User,
+  UserCollection: UserCollection
+};
