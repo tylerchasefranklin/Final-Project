@@ -10,7 +10,7 @@ var UserPost = ParseModel.extend({
 
 var UserPostCollection = ParseCollection.extend({
   model: UserPost,
-
+  url: 'https://spider-man.herokuapp.com/classes/UserPostPublic'
 });
 
 

@@ -4,11 +4,17 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var SignUpLoginContainer = require('./components/login.jsx').SignUpLoginContainer;
 var QuoteGenerator = require('./components/quotegenerator.jsx').QuoteGenerator;
+var JournalEntry = require('./components/journal.jsx').JournalEntry;
+var ChatContainer = require('./components/chat.jsx').ChatContainer;
+var PublicMessageInput = require('./components/publicmessageinput.jsx').PublicMessageInput;
 
 var AppRouter = Backbone.Router.extend({
   routes: {
     '': 'index',
-    'home/': 'home'
+    'home/': 'home',
+    'journal/': 'journal',
+    'chat/': 'chat',
+    'post/': 'post'
   },
   index: function(){
     // console.log('index screen working');
@@ -23,6 +29,24 @@ var AppRouter = Backbone.Router.extend({
       document.getElementById('app')
     );
   },
+  journal: function(){
+    ReactDOM.render(
+      React.createElement(JournalEntry),
+      document.getElementById('app')
+    );
+  },
+  chat: function(){
+    ReactDOM.render(
+      React.createElement(ChatContainer),
+      document.getElementById('app')
+    );
+  },
+  post: function(){
+    ReactDOM.render(
+      React.createElement(PublicMessageInput),
+      document.getElementById('app')
+    );
+  }
 });
 
 var router = new AppRouter();

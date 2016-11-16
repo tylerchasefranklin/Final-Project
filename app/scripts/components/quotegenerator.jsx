@@ -1,24 +1,54 @@
 var React = require('react');
 var Backbone = require('backbone');
 var $ = require('jquery');
+var TemplateComponent = require('./template.jsx').TemplateComponent;
+var RandomQuoteCollection = require('../models/randomquotes').RandomQuoteCollection;
+var QuoteCollection = require('../models/randomquotes').QuoteCollection;
+
+// var HomeContainer = React.createClass({
+//  render: function(){
+//    return (
+//      <TemplateComponent>
+//        <RandomDailyMaterial />
+//        <PublicMessageBoard />
+//        <PublicMessageInput />
+//      </TemplateComponent>
+//    )
+//  }
+// });
 
 var QuoteGenerator = React.createClass({
   render: function(){
-    var quotes = $.get('http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=40').then(function(response){
+    var quoteCollection = new RandomQuoteCollection();
+    quoteCollection.fetch().then(function(response){
       console.log('response', response);
-      response.map(function(quote){
+      var myQuotes = new QuoteCollection(quoteCollection.toJSON());
+      myQuotes.each(function(quote){
         console.log('quote', quote);
-        return (
-          <p>{quote.title}</p>
-        )
-      })
+        quote.save();
+      });
+      // quoteCollection.map(function(quote){
+      //   // console.log('quote', quote.get('title'));
+      //   return (
+      //     <p>{quote.get('title')}</p>
+      //   )
+      // })
     });
     // {quotes}, React doesn't like this!!!
     return (
-      <div>
+      <TemplateComponent>
+        <RandomDailyMaterial />
         <PublicMessageBoard />
         <PublicMessageInput />
-      </div>
+      </TemplateComponent>
+    )
+  }
+});
+
+var RandomDailyMaterial = React.createClass({
+  render: function(){
+    return (
+      <div className="well">Randomly Generated Material Goes Here</div>
     )
   }
 });
@@ -26,7 +56,7 @@ var QuoteGenerator = React.createClass({
 var PublicMessageBoard = React.createClass({
   render: function(){
     return (
-      <h1>Public Message Board Here</h1>
+      <h1 className="col-xs-offset-3">Public Message Board Here</h1>
     );
   }
 });
@@ -39,16 +69,15 @@ var PublicMessageInput = React.createClass({
   },
   handleText: function(e){
     var textbox = e.target.value;
-    console.log(textbox);
     this.setState({textbox: textbox});
   },
   render: function(){
     return (
       <div className="form-group row">
-        <h1>Submit Your Own Positivity For Everyone To See!</h1>
-        <label htmlFor="user-public-post" className="col-xs-2 col-form-label">Submit Your Own Positivity For Everyone To See!</label>
+        <h1 className="col-xs-offset-2">Submit Your Own Positivity For Everyone To See!</h1>
+        <label htmlFor="user-public-post" className="col-xs-1 col-form-label">Submit Your Own Positivity For Everyone To See!</label>
         <div className="col-xs-10">
-          <textarea className="form-control" rows="15" type="text" onChange={this.handleText} value={this.state.textbox} id="user-public-post" placeholder="Submit Your Own Positivity For Everyone To See!"></textarea>
+          <textarea className="form-control" rows="10" type="text" onChange={this.handleText} value={this.state.textbox} id="user-public-post" placeholder="Submit Your Own Positivity For Everyone To See!"></textarea>
           <button className="btn btn-primary">Send</button>
         </div>
       </div>
