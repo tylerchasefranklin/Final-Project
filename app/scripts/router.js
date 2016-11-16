@@ -10,17 +10,6 @@ var AppRouter = Backbone.Router.extend({
     '': 'index',
     'home/': 'home'
   },
-  initialize: function(response){
-    $.ajaxSetup({
-      beforeSend: function(xhr){
-        xhr.setRequestHeader('X-Parse-Application-Id', 'spidermanparseserver');
-        xhr.setRequestHeader('X-Parse-REST-API-Key', 'webslinger');
-        if (response){
-          xhr.setRequestHeader('X-Parse-Session-Token', response.sessionToken);
-        }
-      }
-    });
-  },
   index: function(){
     // console.log('index screen working');
     ReactDOM.render(

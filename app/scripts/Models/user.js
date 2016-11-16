@@ -1,43 +1,8 @@
 var Backbone = require('backbone');
 var $ = require('jquery');
+var ParseModel = require('../parse-utilities.js').ParseModel;
+var ParseCollection = require('../parse-utilities.js').ParseCollection;
 
-var ParseModel = Backbone.Model.extend({
-  idAttribute: 'objectId',
-  save: function(key, val, options){
-    delete this.attributes.createdAt;
-    delete this.attributes.updatedAt;
-
-    return Backbone.Model.prototype.save.apply(this, arguments);
-  }
-});
-
-var ParseCollection = Backbone.Collection.extend({
-  whereClause: {field: '', className: '', objectId: ''},
-  parseWhere: function(field, className, objectId){
-    this.whereClause = {
-      field: field,
-      className: className,
-      objectId: objectId,
-      '__type': 'Pointer'
-    };
-
-    return this;
-  },
-  url: function(){
-    var url = this.baseUrl;
-
-    if (this.whereClause.field){
-      var field = this.whereClause.field;
-      delete this.whereClause.field;
-      url += '?where={"' + field + '":' + JSON.stringify(this.whereClause) + '}';
-    }
-
-    return url;
-  },
-  parse: function(data){
-    return data.results;
-  }
-});
 
 var User = ParseModel.extend({
   urlRoot: 'https://spider-man.herokuapp.com/classes/User',
@@ -50,6 +15,17 @@ var User = ParseModel.extend({
     //   console.log(data);
     //   localStorage.setItem('user', JSON.stringify(self.toJSON()));
     // });
+  },
+  initialize: function(response){
+    $.ajaxSetup({
+      beforeSend: function(xhr){
+        xhr.setRequestHeader('X-Parse-Application-Id', 'spidermanparseserver');
+        xhr.setRequestHeader('X-Parse-REST-API-Key', 'webslinger');
+        if (response){
+          xhr.setRequestHeader('X-Parse-Session-Token', response.sessionToken);
+        }
+      }
+    });
   }
 });
 
