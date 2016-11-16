@@ -3,11 +3,24 @@ var $ = require('jquery');
 
 var ParseModel = Backbone.Model.extend({
   idAttribute: 'objectId',
-  save: function(key, val, options){
+  save: function(attributes, options){
+    options = options || {};
+    attributes = attributes || {};
+
+    this.set(attributes);
+
+    options.beforeSend = function(request){
+      request.setRequestHeader('X-Parse-Application-Id', 'spidermanparseserver');
+      request.setRequestHeader('X-Parse-REST-API-Key', 'webslinger');
+      if (localStorage.getItem('token')){
+        request.setRequestHeader('X-Parse-Session-Token', localStorage.getItem('token'));
+      }
+    };
+
     delete this.attributes.createdAt;
     delete this.attributes.updatedAt;
 
-    return Backbone.Model.prototype.save.apply(this, arguments);
+    return Backbone.Model.prototype.save.call(this, arguments, options);
   }
 });
 

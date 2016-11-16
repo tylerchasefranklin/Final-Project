@@ -90,6 +90,10 @@ handleLogin: function(e){
   var url = 'https://spider-man.herokuapp.com/login?';
   var loginUrl = url + 'username=' + encodeURI(username) + '&password=' + encodeURI(password);
   $.ajax(loginUrl, {
+    headers: {
+      "X-Parse-Application-Id": "spidermanparseserver",
+      "X-Parse-REST-API-Key": "webslinger"
+    },
     success: function(response){
       var token = localStorage.token;
       alert('You Logged In!');

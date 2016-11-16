@@ -16,17 +16,17 @@ var User = ParseModel.extend({
     //   localStorage.setItem('user', JSON.stringify(self.toJSON()));
     // });
   },
-  initialize: function(response){
-    $.ajaxSetup({
-      beforeSend: function(xhr){
-        xhr.setRequestHeader('X-Parse-Application-Id', 'spidermanparseserver');
-        xhr.setRequestHeader('X-Parse-REST-API-Key', 'webslinger');
-        if (response){
-          xhr.setRequestHeader('X-Parse-Session-Token', response.sessionToken);
-        }
-      }
-    });
-  }
+  // initialize: function(response){
+  //   $.ajaxSetup({
+  //     beforeSend: function(xhr){
+  //       xhr.setRequestHeader('X-Parse-Application-Id', 'spidermanparseserver');
+  //       xhr.setRequestHeader('X-Parse-REST-API-Key', 'webslinger');
+  //       if (response){
+  //         xhr.setRequestHeader('X-Parse-Session-Token', response.sessionToken);
+  //       }
+  //     }
+  //   });
+  // }
 });
 
 var UserCollection = ParseCollection.extend({
