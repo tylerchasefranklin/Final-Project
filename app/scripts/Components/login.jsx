@@ -69,6 +69,7 @@ getInitialState: function(){
   return {
     username: '',
     password: '',
+    user: new models.User()
   };
 },
 handleUsername: function(e){

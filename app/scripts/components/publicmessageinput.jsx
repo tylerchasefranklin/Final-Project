@@ -2,7 +2,7 @@ var React = require('react');
 var Backbone = require('backbone');
 var TemplateComponent = require('./template.jsx').TemplateComponent;
 
-var PublicMessageInput = React.createClass({
+var UserPostInput = React.createClass({
   getInitialState: function(){
     return {
       textbox: ''
@@ -23,11 +23,11 @@ var PublicMessageInput = React.createClass({
             <button className="btn btn-primary">Send</button>
           </div>
         </div>
-      </TemplateComponent>  
+      </TemplateComponent>
     );
   }
 });
 
 module.exports = {
-  PublicMessageInput: PublicMessageInput
+  UserPostInput: UserPostInput
 };

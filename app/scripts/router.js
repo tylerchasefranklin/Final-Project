@@ -6,7 +6,7 @@ var SignUpLoginContainer = require('./components/login.jsx').SignUpLoginContaine
 var HomeContainer = require('./components/quotegenerator.jsx').HomeContainer;
 var JournalEntry = require('./components/journal.jsx').JournalEntry;
 var ChatContainer = require('./components/chat.jsx').ChatContainer;
-var PublicMessageInput = require('./components/publicmessageinput.jsx').PublicMessageInput;
+var UserPostInput = require('./components/publicmessageinput.jsx').UserPostInput;
 
 var AppRouter = Backbone.Router.extend({
   routes: {
