@@ -5,53 +5,63 @@ var TemplateComponent = require('./template.jsx').TemplateComponent;
 var RandomQuoteCollection = require('../models/randomquotes').RandomQuoteCollection;
 var QuoteCollection = require('../models/randomquotes').QuoteCollection;
 
-// var HomeContainer = React.createClass({
-//  render: function(){
-//    return (
-//      <TemplateComponent>
-//        <RandomDailyMaterial />
-//        <PublicMessageBoard />
-//        <PublicMessageInput />
-//      </TemplateComponent>
-//    )
-//  }
-// });
+var HomeContainer = React.createClass({
+ render: function(){
+   return (
+     <TemplateComponent>
+
+       <QuoteGenerator />
+       <PublicMessageBoard />
+       <PublicMessageInput />
+     </TemplateComponent>
+   )
+ }
+});
+
+
+
 
 var QuoteGenerator = React.createClass({
-  render: function(){
-    var quoteCollection = new RandomQuoteCollection();
+  getInitialState: function(){
+    return {
+      quoteCollection: new RandomQuoteCollection(),
+    };
+  },
+  componentWillMount: function(){
+    var quoteCollection = this.state.quoteCollection;
+    var self = this;
     quoteCollection.fetch().then(function(response){
       console.log('response', response);
-      var myQuotes = new QuoteCollection(quoteCollection.toJSON());
-      myQuotes.each(function(quote){
-        console.log('quote', quote);
-        quote.save();
-      });
-      // quoteCollection.map(function(quote){
-      //   // console.log('quote', quote.get('title'));
-      //   return (
-      //     <p>{quote.get('title')}</p>
-      //   )
-      // })
+      self.setState({quoteCollection: quoteCollection});
     });
-    // {quotes}, React doesn't like this!!!
+  },
+  render: function(){
+    var quoteCollection = this.state.quoteCollection;
+    console.log(quoteCollection);
+    var dailyQuote = quoteCollection.map(function(quote){
+      console.log(quote);
+
+      return (
+        $(quote.attributes.content).text()
+      )
+    });
+
     return (
-      <TemplateComponent>
-        <RandomDailyMaterial />
-        <PublicMessageBoard />
-        <PublicMessageInput />
-      </TemplateComponent>
+      <div>
+        <h1>Daily Quote</h1>
+        {dailyQuote}
+      </div>
     )
   }
 });
 
-var RandomDailyMaterial = React.createClass({
-  render: function(){
-    return (
-      <div className="well">Randomly Generated Material Goes Here</div>
-    )
-  }
-});
+// var RandomDailyMaterial = React.createClass({
+//   render: function(){
+//     return (
+//       <div className="well">Randomly Generated Material Goes Here</div>
+//     )
+//   }
+// });
 
 var PublicMessageBoard = React.createClass({
   render: function(){
@@ -87,5 +97,5 @@ var PublicMessageInput = React.createClass({
 
 
 module.exports = {
-  QuoteGenerator: QuoteGenerator
+  HomeContainer: HomeContainer
 };

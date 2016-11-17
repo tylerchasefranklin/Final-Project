@@ -9,7 +9,7 @@ var RandomQuote = Backbone.Model.extend({
 
 var RandomQuoteCollection = Backbone.Collection.extend({
   model: RandomQuote,
-  url: 'http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=40'
+  url: 'http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1'
 });
 
 var Quote = ParseModel.extend({

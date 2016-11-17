@@ -3,7 +3,7 @@ var $ = require('jquery');
 var React = require('react');
 var ReactDOM = require('react-dom');
 var SignUpLoginContainer = require('./components/login.jsx').SignUpLoginContainer;
-var QuoteGenerator = require('./components/quotegenerator.jsx').QuoteGenerator;
+var HomeContainer = require('./components/quotegenerator.jsx').HomeContainer;
 var JournalEntry = require('./components/journal.jsx').JournalEntry;
 var ChatContainer = require('./components/chat.jsx').ChatContainer;
 var PublicMessageInput = require('./components/publicmessageinput.jsx').PublicMessageInput;
@@ -25,7 +25,7 @@ var AppRouter = Backbone.Router.extend({
   },
   home: function(){
     ReactDOM.render(
-      React.createElement(QuoteGenerator),
+      React.createElement(HomeContainer),
       document.getElementById('app')
     );
   },
