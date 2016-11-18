@@ -7,11 +7,13 @@ var HomeContainer = require('./components/quotegenerator.jsx').HomeContainer;
 var JournalEntry = require('./components/journal.jsx').JournalEntry;
 var ChatContainer = require('./components/chat.jsx').ChatContainer;
 var UserPostInput = require('./components/publicmessageinput.jsx').UserPostInput;
+var UserProfileContainer = require('./components/profile.jsx').UserProfileContainer;
 
 var AppRouter = Backbone.Router.extend({
   routes: {
     '': 'index',
     'home/': 'home',
+    'profile/': 'profile',
     'journal/': 'journal',
     'chat/': 'chat',
     'post/': 'post'
@@ -20,6 +22,12 @@ var AppRouter = Backbone.Router.extend({
     // console.log('index screen working');
     ReactDOM.render(
       React.createElement(SignUpLoginContainer),
+      document.getElementById('app')
+    );
+  },
+  profile: function(){
+    ReactDOM.render(
+      React.createElement(UserProfileContainer),
       document.getElementById('app')
     );
   },

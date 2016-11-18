@@ -64,12 +64,32 @@ var QuoteGenerator = React.createClass({
 var PublicMessageBoard = React.createClass({
   getInitialState: function(){
     return {
-      publicposts: new UserPostCollection()
+      publicPosts: new UserPostCollection(),
     }
   },
+  componentWillMount: function(){
+    var publicPosts = this.state.publicPosts;
+    var self = this;
+    var posts = publicPosts.fetch({headers: {
+      "X-Parse-Application-Id": "spidermanparseserver",
+      "X-Parse-REST-API-Key": "webslinger"
+    }}).then(function(response){
+      self.setState({publicPosts: response.results})
+    });
+  },
   render: function(){
+    var publicPosts = this.state.publicPosts;
+    console.log(publicPosts);
+    var posts = publicPosts.map(function(post){
+      return (
+        <li key={post.objectId}>{post.content}</li>
+      )
+    });
     return (
-      <h1>Public Message Board Here</h1>
+      <div>
+        <h1>Public Message Board Here</h1>
+        <ul>{posts}</ul>
+      </div>
     );
   }
 });
@@ -84,34 +104,23 @@ var PublicMessageInput = React.createClass({
   },
   componentWillMount: function(){
     var user = localStorage.username;
-    console.log('user', user);
+    // console.log('user', user);
   },
   handleText: function(e){
-    //
+    //This is simultaneously taking the input, and setting it to collection and state
     var userPost = this.state.userPost;
-    console.log(userPost);
+    // console.log(userPost);
     userPost.set(e.target.name, e.target.value);
-
     this.setState({userPost: userPost});
   },
   handleSubmit: function(e){
     e.preventDefault();
     var userPost = this.state.userPost;
     var user = new User();
-    var textbox = this.state.textbox;
-    console.log(textbox);
     userPost.save();
-    var url = 'https://spider-man.herokuapp.com/classes/UserPostPublic';
-    // var postSubmit = $.post('https://spider-man.herokuapp.com/classes/UserPostPublic',{headers: {
-    //   "X-Parse-Application-Id": "spidermanparseserver",
-    //   "X-Parse-REST-API-Key": "webslinger"
-    // }, textbox}).then(function(data){
-    //   console.log(data.results);
-    //   console.log(postSubmit);
-    // });
-
-
-
+    // We have to set textbox to empty string, and then reset the state of the model
+    userPost.set('textbox', '');
+    this.setState({userPost: userPost});
   },
   render: function(){
     return (

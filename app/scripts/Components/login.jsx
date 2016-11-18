@@ -143,12 +143,7 @@ var SignUpLoginContainer = React.createClass({
       'password': signUpData.password
     };
     user.set(data);
-    var reponse = $.post('https://spider-man.herokuapp.com/users/', data).then(function(response){
-      // console.log('test', response.sessionToken);
-      //
-      // console.log(response);
-      // console.log(data);
-   });
+    user.save();
   },
   render: function(){
     return (

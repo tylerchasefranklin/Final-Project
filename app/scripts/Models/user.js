@@ -5,24 +5,14 @@ var ParseCollection = require('../parse-utilities.js').ParseCollection;
 
 
 var User = ParseModel.extend({
-  urlRoot: 'https://spider-man.herokuapp.com/classes/User',
-  signUp: function(){
-    var self = this;
-    var username = this.get('username');
-    var password = this.get('password');
-
-    // this.save().then(function(data){
-    //   console.log(data);
-    //   localStorage.setItem('user', JSON.stringify(self.toJSON()));
-    // });
-  },
+  urlRoot: 'https://spider-man.herokuapp.com/users',
 });
 
 
 
 var UserCollection = ParseCollection.extend({
   model: User,
-  url: 'https://spider-man.herokuapp.com/classes/User'
+  url: 'https://spider-man.herokuapp.com/users'
 });
 
 module.exports = {

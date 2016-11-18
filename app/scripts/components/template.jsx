@@ -33,11 +33,13 @@ var Navbar = React.createClass({
 
           <div className="collapse navbar-collapse">
             <ul className="nav navbar-nav">
+              <li><a href={"#profile/"}>Profile</a></li>
               <li><a href={"#journal/"}>Journal</a></li>
               <li><a href={"#chat/"}>Chat</a></li>
               <li><a href={"#post/"}>Post</a></li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
+              <li><a href={"#profile/"}>Edit Profile</a></li>
               <li><a href="#">Logout</a></li>
             </ul>
           </div>
@@ -55,9 +57,14 @@ var Footer = React.createClass({
           <div className="navbar-footer">
             <a className="navbar-brand" href={"#home/"}>Home</a>
             <ul className="nav navbar-nav">
+              <li><a href="#profile/">Profile</a></li>
               <li><a href={"#journal/"}>Journal</a></li>
               <li><a href={"#chat/"}>Chat</a></li>
               <li><a href={"#post/"}>Post</a></li>
+            </ul>
+            <ul className="nav navbar-nav navbar-right">
+              <li><a href="#">Edit Profile</a></li>
+              <li><a href="#">Logout</a></li>
             </ul>
           </div>
         </div>
