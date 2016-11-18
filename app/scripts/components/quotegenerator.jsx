@@ -87,25 +87,40 @@ var PublicMessageInput = React.createClass({
     console.log('user', user);
   },
   handleText: function(e){
-    var textbox = e.target.value;
-    this.setState({textbox: textbox});
+    //
+    var userPost = this.state.userPost;
+    console.log(userPost);
+    userPost.set(e.target.name, e.target.value);
+
+    this.setState({userPost: userPost});
   },
   handleSubmit: function(e){
     e.preventDefault();
-    var userPost = new UserPost();
+    var userPost = this.state.userPost;
     var user = new User();
     var textbox = this.state.textbox;
+    console.log(textbox);
+    userPost.save();
+    var url = 'https://spider-man.herokuapp.com/classes/UserPostPublic';
+    // var postSubmit = $.post('https://spider-man.herokuapp.com/classes/UserPostPublic',{headers: {
+    //   "X-Parse-Application-Id": "spidermanparseserver",
+    //   "X-Parse-REST-API-Key": "webslinger"
+    // }, textbox}).then(function(data){
+    //   console.log(data.results);
+    //   console.log(postSubmit);
+    // });
+
 
 
   },
   render: function(){
     return (
-      <div className="form-group">
+      <div className="">
         <h1>Submit Your Own Positivity For Everyone To See!</h1>
-        <div className="">
-          <textarea className="form-control" rows="10" type="text" onChange={this.handleText} value={this.state.textbox} id="user-public-post" placeholder="Submit Your Own Positivity For Everyone To See!"></textarea>
-          <button className="btn btn-primary">Send</button>
-        </div>
+        <form onSubmit={this.handleSubmit} className="form-group">
+          <textarea className="form-control" name="content" rows="10" type="text" onChange={this.handleText} value={this.state.userPost.get('textbox')} id="user-public-post" placeholder="Submit Your Own Positivity For Everyone To See!"></textarea>
+          <input className="btn btn-primary" type="submit" value="Submit"/>
+        </form>
       </div>
     );
   }

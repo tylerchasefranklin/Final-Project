@@ -5,7 +5,8 @@ var ParseCollection = require('../parse-utilities.js').ParseCollection;
 
 
 var UserPost = ParseModel.extend({
-  idAttribute: 'objectId'
+  idAttribute: 'objectId',
+  urlRoot: 'https://spider-man.herokuapp.com/classes/UserPostPublic'
 });
 
 var UserPostCollection = ParseCollection.extend({

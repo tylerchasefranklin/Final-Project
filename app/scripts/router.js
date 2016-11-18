@@ -43,7 +43,7 @@ var AppRouter = Backbone.Router.extend({
   },
   post: function(){
     ReactDOM.render(
-      React.createElement(PublicMessageInput),
+      React.createElement(UserPostInput),
       document.getElementById('app')
     );
   }
