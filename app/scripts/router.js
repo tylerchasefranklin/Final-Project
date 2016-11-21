@@ -8,12 +8,17 @@ var JournalEntry = require('./components/journal.jsx').JournalEntry;
 var ChatContainer = require('./components/chat.jsx').ChatContainer;
 var UserPostInput = require('./components/publicmessageinput.jsx').UserPostInput;
 var UserProfileContainer = require('./components/profile.jsx').UserProfileContainer;
+var GeneratorContainer = require('./components/justforme.jsx').GeneratorContainer;
+var GeneratedMaterial = require('./components/generatedmaterial.jsx').GeneratedMaterial;
+
 
 var AppRouter = Backbone.Router.extend({
   routes: {
     '': 'index',
     'home/': 'home',
     'profile/': 'profile',
+    'justforme/': 'justforme',
+    'mystuff/': 'mystuff',
     'journal/': 'journal',
     'chat/': 'chat',
     'post/': 'post'
@@ -28,6 +33,18 @@ var AppRouter = Backbone.Router.extend({
   profile: function(){
     ReactDOM.render(
       React.createElement(UserProfileContainer),
+      document.getElementById('app')
+    );
+  },
+  justforme: function(){
+    ReactDOM.render(
+      React.createElement(GeneratorContainer),
+      document.getElementById('app')
+    );
+  },
+  mystuff: function(){
+    ReactDOM.render(
+      React.createElement(GeneratedMaterial),
       document.getElementById('app')
     );
   },

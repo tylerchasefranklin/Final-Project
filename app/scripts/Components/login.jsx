@@ -148,6 +148,7 @@ var SignUpLoginContainer = React.createClass({
   render: function(){
     return (
       <div>
+        <h1>Welcome To The Portal of Positivity!!!</h1>
         <SignUpForm signUpNewUser={this.signUpNewUser}/>
         <LoginForm />
       </div>
