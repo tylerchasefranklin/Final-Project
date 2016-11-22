@@ -13,18 +13,7 @@ var RandomQuoteCollection = Backbone.Collection.extend({
 });
 
 var Quote = ParseModel.extend({
-  idAttribute: 'objectId',
-  // initialize: function(response){
-  //   $.ajaxSetup({
-  //     beforeSend: function(xhr){
-  //       xhr.setRequestHeader('X-Parse-Application-Id', 'spidermanparseserver');
-  //       xhr.setRequestHeader('X-Parse-REST-API-Key', 'webslinger');
-  //       if (response){
-  //         xhr.setRequestHeader('X-Parse-Session-Token', response.sessionToken);
-  //       }
-  //     }
-  //   });
-  // }
+  idAttribute: 'objectId'
 });
 
 var QuoteCollection = ParseCollection.extend({

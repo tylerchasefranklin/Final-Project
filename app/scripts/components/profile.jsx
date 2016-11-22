@@ -9,27 +9,42 @@ var UserCollection = require('../models/user').UserCollection;
 var UserProfileContainer = React.createClass({
   getInitialState: function(){
     return {
-      user: new User(),
-      userCollection: new UserCollection()
+      user: User.current(),
+      userCollection: new UserCollection(),
+      file: new FileModel()
     }
   },
-  componentWillMount: function(){
-    var user = this.state.user;
-    var userCollection = this.state.userCollection;
-    userCollection.fetch({headers: {
-      "X-Parse-Application-Id": "spidermanparseserver",
-      "X-Parse-REST-API-Key": "webslinger"
-    }}).then(function(response){
-      console.log(response);
+  uploadPicture: function(picture){
+    var file = new FileModel();
+    var self = this;
+    file.set('name', picture.name);
+    file.set('data', picture);
+    file.save().done(function(){
+      var user = User.current();
+      user.set('profileImage', file.get('url'));
+      user.save();
+      self.setState({user: user})
+      // localStorage.setItem('image', response.url);
     });
-    console.log('user', user);
-    console.log('userCollection', userCollection);
+
   },
+  // componentWillMount: function(){
+  //   var user = this.state.user;
+  //   var userCollection = this.state.userCollection;
+  //   userCollection.fetch({headers: {
+  //     "X-Parse-Application-Id": "spidermanparseserver",
+  //     "X-Parse-REST-API-Key": "webslinger"
+  //   }}).then(function(response){
+  //     console.log(response);
+  //   });
+  //   // console.log('user', user);
+  //   // console.log('userCollection', userCollection);
+  // },
   render: function(){
     return (
       <TemplateComponent>
         <h1>User Profile</h1>
-        <EditUserProfile />
+        <EditUserProfile user={this.state.user} uploadPicture={this.uploadPicture}/>
       </TemplateComponent>
 
     )
@@ -47,31 +62,32 @@ var UserInformation = React.createClass({
 });
 
 var UploadProfilePic = React.createClass({
+  handlePicture: function(e){
+    e.preventDefault();
+    var picture = e.target.files[0];
+    this.props.uploadPicture(picture);
+    this.setState({picture: picture});
+    // console.log(picture);
+  },
+
   render: function(){
     return (
-      <form action="https://spider-man.herokuapp.com/" id="profile" method="POST" encType="multipart/form-data">
+      <form onSubmit={function(e){e.preventDefault()}} action="/" id="profile" method="POST" encType="multipart/form-data">
         <label className="btn btn-default btn-file" htmlFor="file-select">
-          <input id="file-select" type="file" id="pic1" name="pic1" />
+          <input onChange={this.handlePicture} id="file-select" type="file" id="pic1" name="pic1" />
         </label>
-
-        <input className="btn btn-success" type="submit" />
       </form>
     );
   }
 });
 
 var EditUserProfile = React.createClass({
-  getInitialState: function(){
-    return {
-      user: new User()
-    }
-  },
   render: function(){
     return (
       <div>
         <h1>This is how you will create your profile</h1>
-        <img className="img-rounded img-responsive" src="http://unsplash.it/200/200"></img>
-        <UploadProfilePic />
+        <img className="img-rounded img-responsive" src={this.props.user.get('profileImage')}></img>
+        <UploadProfilePic uploadPicture={this.props.uploadPicture} />
       </div>
 
     )

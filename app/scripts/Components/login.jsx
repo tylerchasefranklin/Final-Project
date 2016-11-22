@@ -97,11 +97,11 @@ handleLogin: function(e){
     },
     success: function(response){
       var token = localStorage.token;
-      alert('You Logged In!');
       localStorage.setItem('username', username);
       localStorage.setItem('password', password);
       localStorage.setItem('token', response.sessionToken);
-      if(token){
+      localStorage.setItem('user', JSON.stringify(response));
+      if(response.sessionToken){
         Backbone.history.navigate('home/', {trigger: true});
       }
     },

@@ -5,7 +5,7 @@ var FileModel = Backbone.Model.extend({
     name: 'default.jpg'
   },
   urlRoot: function(){
-    var url = 'https://spider-man-server.herokuapp.com/Files';
+    var url = 'https://spider-man.herokuapp.com/files/';
     return url + encodeURIComponent(this.get('name'));
   },
   save: function(attributes, options){
@@ -31,7 +31,7 @@ var FileModel = Backbone.Model.extend({
 
 var FileCollection = Backbone.Collection.extend({
   model: FileModel,
-  url: 'https://spider-man-server.herokuapp.com/Files'
+  url: 'https://spider-man.herokuapp.com/files/'
 });
 
 

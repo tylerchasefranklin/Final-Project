@@ -22,7 +22,6 @@ var HomeContainer = React.createClass({
 
 
 
-
 var QuoteGenerator = React.createClass({
   getInitialState: function(){
     return {
@@ -40,7 +39,7 @@ var QuoteGenerator = React.createClass({
     var quoteCollection = this.state.quoteCollection;
     var dailyQuote = quoteCollection.map(function(quote){
       return (
-        $(quote.attributes.content).text()
+        $(quote.attributes.content).text() + " " + "--" + (quote.attributes.title)
       )
     });
 
@@ -53,13 +52,6 @@ var QuoteGenerator = React.createClass({
   }
 });
 
-// var RandomDailyMaterial = React.createClass({
-//   render: function(){
-//     return (
-//       <div className="well">Randomly Generated Material Goes Here</div>
-//     )
-//   }
-// });
 
 var PublicMessageBoard = React.createClass({
   getInitialState: function(){
@@ -79,7 +71,7 @@ var PublicMessageBoard = React.createClass({
   },
   render: function(){
     var publicPosts = this.state.publicPosts;
-    console.log(publicPosts);
+    // console.log(publicPosts);
     var posts = publicPosts.map(function(post){
       return (
         <li key={post.objectId}>{post.content}</li>

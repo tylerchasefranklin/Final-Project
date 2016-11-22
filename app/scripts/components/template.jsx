@@ -23,7 +23,14 @@ var TemplateComponent = React.createClass({
 });
 
 var Navbar = React.createClass({
+  logoutUser: function(){
+    delete localStorage.username;
+    delete localStorage.password;
+    delete localStorage.token;
+    delete localStorage.user;
+  },
   render: function(){
+    var username = localStorage.username;
     return (
       <nav className="navbar navbar-inverse">
         <div className="container-fluid">
@@ -40,8 +47,9 @@ var Navbar = React.createClass({
               <li><a href={"#post/"}>Post</a></li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
+              <li><a href="#">Signed In As: {username}</a></li>
               <li><a href={"#profile/"}>Edit Profile</a></li>
-              <li><a href="#">Logout</a></li>
+              <li><a href="#" onClick={this.logoutUser}>Logout</a></li>
             </ul>
           </div>
         </div>
