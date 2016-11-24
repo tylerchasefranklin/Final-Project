@@ -4,6 +4,7 @@ var SplitButton = require('react-bootstrap/lib/SplitButton');
 var MenuItem = require('react-bootstrap/lib/MenuItem');
 var TemplateComponent = require('./template.jsx').TemplateComponent;
 var $ = require('jquery');
+var QuoteCollection = require('../models/randomquotes').QuoteCollection;
 
 
 var GeneratorContainer = React.createClass({
@@ -12,8 +13,19 @@ var GeneratorContainer = React.createClass({
       mood: {'label': ''},
       event: {'label': ''},
       looking: {'label': ''},
-      keyword: {'label': ''}
+      keyword: {'label': ''},
+      quoteCollection: new QuoteCollection()
     }
+  },
+  componentWillMount: function(){
+    var self = this;
+    var quoteCollection = this.state.quoteCollection;
+    var quoteList = quoteCollection.fetch({headers: {
+      "X-Parse-Application-Id": "spidermanparseserver",
+      "X-Parse-REST-API-Key": "webslinger"
+    }}).then(function(response){
+      self.setState({quoteCollection: response.results})
+    });
   },
   handleSelect: function(e){
     e.preventDefault();
@@ -29,7 +41,13 @@ var GeneratorContainer = React.createClass({
   },
   handleSubmit: function(e){
     e.preventDefault();
-
+    var quoteCollection = this.state.quoteCollection;
+    var quotes = quoteCollection.map(function(data){
+      if(data.keywords.includes('anxious') && data.keywords.includes('happy')){
+        return data;
+      };
+    });
+    console.log(quotes);
 
   },
   render: function(){
@@ -37,7 +55,7 @@ var GeneratorContainer = React.createClass({
     return (
       <TemplateComponent>
         <h1>Find me something for me!</h1>
-        <form className="form-group">
+        <form className="form-group" onSubmit={this.handleSubmit}>
           <h3>What is my current mood?</h3>
 
           <SplitButton title="I'm feeling..." id="bg-nested-dropdown" bsStyle="info">
@@ -122,166 +140,7 @@ var GeneratorContainer = React.createClass({
   }
 });
 
-// var CurrentMood = React.createClass({
-//   getInitialState: function(){
-//     return {
-//       selection: ''
-//     }
-//   },
-//   handleSelect: function(e){
-//     e.preventDefault();
-//     var selection = e.target.name;
-//     // console.log(selection);
-//     this.setState({selection: selection});
-//     // console.log('selection', {selection});
-//   },
-//   render: function(){
-//     var selection = this.state.selection;
-//     console.log(selection);
-//     return (
-//       <div className="form-group">
-//         <h3>What is my current mood?</h3>
-//
-//         <SplitButton title="Current Mood" data-option="bg-nested-dropdown" bsStyle="info">
-//           <MenuItem onSelect={this.handleSelect} name="content/calm" eventKey={1}>content/calm</MenuItem>
-//             <MenuItem divider />
-//           <MenuItem onSelect={this.handleSelect} name="sad/down" eventKey={2}>sad/down</MenuItem>
-//             <MenuItem divider />
-//           <MenuItem onSelect={this.handleSelect} name="love/elated" eventKey={3}>love/elated</MenuItem>
-//             <MenuItem divider />
-//           <MenuItem onSelect={this.handleSelect} name ="heartbroken/alone" eventKey={4}>heartbroken/alone</MenuItem>
-//             <MenuItem divider />
-//           <MenuItem onSelect={this.handleSelect} name="worried/stressed" eventKey={5}>worried/stressed</MenuItem>
-//             <MenuItem divider />
-//           <MenuItem onSelect={this.handleSelect} name="proud/pumped" eventKey={6}>proud/pumped</MenuItem>
-//         </SplitButton>
-//         Selection: {selection}
-//
-//       </div>
-//     );
-//   }
-// });
-//
-//
-//
-// var EventLogger = React.createClass({
-//   getInitialState: function(){
-//     return {
-//       selection: ''
-//     }
-//   },
-//   handleSelect: function(e){
-//     e.preventDefault();
-//     var selection = e.target.name;
-//     // console.log(selection);
-//     this.setState({selection: selection});
-//     // console.log('selection', {selection});
-//   },
-//   render: function(){
-//     var selection = this.state.selection;
-//     console.log(selection);
-//     return (
-//       <div className="form-group">
-//         <h3>What happened?</h3>
-//
-//         <SplitButton title="Event" data-option="bg-nested-dropdown" bsStyle="danger">
-//           <MenuItem onSelect={this.handleSelect} name="nothing" eventKey={1}>nothing</MenuItem>
-//             <MenuItem divider />
-//           <MenuItem onSelect={this.handleSelect} name="break-up" eventKey={2}>break-up</MenuItem>
-//             <MenuItem divider />
-//           <MenuItem onSelect={this.handleSelect} name="new job/promotion" eventKey={3}>new job/promotion</MenuItem>
-//             <MenuItem divider />
-//           <MenuItem onSelect={this.handleSelect} name="death of family member/friend" eventKey={4}>death of family member/friend</MenuItem>
-//             <MenuItem divider />
-//           <MenuItem onSelect={this.handleSelect} name="new relationship/married" eventKey={5}>new relationship/married</MenuItem>
-//             <MenuItem divider />
-//           <MenuItem onSelect={this.handleSelect} name ="just having a rough day" eventKey={6}>just having a rough day</MenuItem>
-//         </SplitButton>
-//         Selection: {selection}
-//       </div>
-//     );
-//   }
-// });
-//
-// var WhatYouNeed = React.createClass({
-//   getInitialState: function(){
-//     return {
-//       selection: ''
-//     }
-//   },
-//   handleSelect: function(e){
-//     e.preventDefault();
-//     var selection = e.target.name;
-//     // console.log(selection);
-//     this.setState({selection: selection});
-//     // console.log('selection', {selection});
-//   },
-//   render: function(){
-//     var selection = this.state.selection;
-//     console.log(selection);
-//     return (
-//       <div className="form-group">
-//         <h3>What am I looking for?</h3>
-//         <SplitButton title="Looking For:" data-option="bg-nested-dropdown" bsStyle="success">
-//           <MenuItem onSelect={this.handleSelect} name="something to make me laugh" eventKey={1}>something to make me laugh</MenuItem>
-//             <MenuItem divider />
-//           <MenuItem onSelect={this.handleSelect} name="something inspirational" eventKey={2}>something inspirational</MenuItem>
-//             <MenuItem divider />
-//           <MenuItem onSelect={this.handleSelect} name="something to give me perspective" eventKey={3}>something to give me perspective</MenuItem>
-//             <MenuItem divider />
-//           <MenuItem onSelect={this.handleSelect} name="something to make me feel not alone" eventKey={4}>something to make me feel not alone</MenuItem>
-//             <MenuItem divider />
-//           <MenuItem onSelect={this.handleSelect} name="something I can cry to" eventKey={5}>something I can cry to</MenuItem>
-//             <MenuItem divider />
-//           <MenuItem onSelect={this.handleSelect} name="something to keep it real" eventKey={6}>something to keep it real</MenuItem>
-//         </SplitButton>
-//         Selection: {selection}
-//       </div>
-//     )
-//   }
-// });
-//
-// var Keywords = React.createClass({
-//   getInitialState: function(){
-//     return {
-//       selection: ''
-//     }
-//   },
-//   handleSelect: function(e){
-//     e.preventDefault();
-//     var selection = e.target.name;
-//     // console.log(selection);
-//     this.setState({selection: selection});
-//     // console.log('selection', {selection});
-//   },
-//   render: function(){
-//     var selection = this.state.selection;
-//     console.log(selection);
-//     return (
-//       <div className="form-group">
-//         <h3>Use Keywords To Help Indicate What You Are Feeling</h3>
-//         <SplitButton title="Keywords" data-option="bg-nested-dropdown" bsStyle="warning">
-//           <MenuItem onSelect={this.handleSelect} name="joy" eventKey={1}>joy</MenuItem>
-//             <MenuItem divider />
-//           <MenuItem onSelect={this.handleSelect} name="depression" eventKey={2}>depression</MenuItem>
-//             <MenuItem divider />
-//           <MenuItem onSelect={this.handleSelect} name="excitement" eventKey={3}>excitement</MenuItem>
-//             <MenuItem divider />
-//           <MenuItem onSelect={this.handleSelect} name="despair" eventKey={4}>despair</MenuItem>
-//             <MenuItem divider />
-//           <MenuItem onSelect={this.handleSelect} name="happiness" eventKey={5}>happiness</MenuItem>
-//             <MenuItem divider />
-//           <MenuItem onSelect={this.handleSelect} name="loneliness" eventKey={6}>loneliness</MenuItem>
-//             <MenuItem divider />
-//           <MenuItem onSelect={this.handleSelect} name="pride" eventKey={7}>pride</MenuItem>
-//             <MenuItem divider />
-//           <MenuItem onSelect={this.handleSelect} name="hurt/pain" eventKey={8}>hurt/pain</MenuItem>
-//         </SplitButton>
-//         Selection: {selection}
-//       </div>
-//     )
-//   }
-// });
+
 
 
 module.exports ={
