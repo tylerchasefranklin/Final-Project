@@ -42,10 +42,6 @@ var GeneratorContainer = React.createClass({
   handleSubmit: function(e){
     e.preventDefault();
     var selector = this.state;
-    console.log(selector.mood.value);
-    console.log(selector.event.value);
-    console.log(selector.looking.value);
-    console.log(selector.keyword.value);
     var quoteCollection = this.state.quoteCollection;
     var quotes = quoteCollection.map(function(data){
       if(selector.mood.value === undefined){
@@ -61,7 +57,7 @@ var GeneratorContainer = React.createClass({
         throw alert("Please select a keyword");
       };
       if(data.keywords.includes(selector.mood.value) && data.keywords.includes(selector.event.value) && data.keywords.includes(selector.looking.value) && data.keywords.includes(selector.keyword.value)){
-        return data;
+        return data.content;
       };
     });
     console.log(quotes);
