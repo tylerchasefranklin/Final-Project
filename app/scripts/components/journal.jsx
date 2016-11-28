@@ -8,21 +8,21 @@ var JournalEntry = React.createClass({
   getInitialState: function(){
     return {
       textbox: '',
+      journalEntry: new JournalEntry(),
       entryCollection: new JournalCollection()
     }
   },
   handleText: function(e){
-    var textbox = e.target.value;
+    var textbox = e.target.value
+    console.log(textbox);
     this.setState({textbox: textbox});
   },
   handleSubmit: function(e){
     var textbox = this.state.textbox;
-    var journalEntry = new JournalEntry();
-    var entryCollection = new JournalCollection();
-    entryCollection.create(this.state.textbox);
+
+
+    entryCollection.create(textbox);
     console.log({textbox: textbox});
-
-
   },
   render: function(){
     return (
@@ -32,7 +32,7 @@ var JournalEntry = React.createClass({
           <label htmlFor="user-public-post" className="col-xs-2 col-form-label">Submit A Journal Entry</label>
           <div className="col-xs-10">
             <textarea className="form-control" rows="10" type="text" onChange={this.handleText} value={this.state.textbox} id="user-public-post" placeholder="Submit A Journal Entry"></textarea>
-            <button className="btn btn-primary">Send</button>
+            <input className="btn btn-primary" type="submit" value="Submit"/>
           </div>
         </form>
       </TemplateComponent>

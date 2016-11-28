@@ -4,6 +4,7 @@ var ParseModel = require('../parse-utilities.js').ParseModel;
 var ParseCollection = require('../parse-utilities.js').ParseCollection;
 
 var JournalEntry = ParseModel.extend({
+  idAttribute: 'objectId',
   urlRoot: 'https://spider-man.herokuapp.com/classes/JournalEntry'
 });
 

@@ -43,7 +43,7 @@ var GeneratorContainer = React.createClass({
     e.preventDefault();
     var selector = this.state;
     var quoteCollection = this.state.quoteCollection;
-    var quotes = quoteCollection.map(function(data){
+    var quotes = quoteCollection.filter(function(data){
       if(selector.mood.value === undefined){
         throw alert("Please select your mood");
       };
@@ -57,16 +57,27 @@ var GeneratorContainer = React.createClass({
         throw alert("Please select a keyword");
       };
       if(data.keywords.includes(selector.mood.value) && data.keywords.includes(selector.event.value) && data.keywords.includes(selector.looking.value) && data.keywords.includes(selector.keyword.value)){
-        return data.content;
+        return data;
       };
     });
-    console.log(quotes);
-
+    var selectedQuote = quotes[Math.floor(Math.random() * quotes.length)];
+    this.setState({selectedContent: ($(selectedQuote.content).text())});
+    this.setState({selectedAuthor: '--' + selectedQuote.title});
   },
   render: function(){
     var stateObject = this.state.stateObject;
+    var selectedContent = this.state.selectedContent;
+    var selectedAuthor = this.state.selectedAuthor;
     return (
       <TemplateComponent>
+
+        <div>
+          {selectedContent}
+          <br></br>
+          <br></br>
+          {selectedAuthor}
+        </div>
+
         <h1>Find me something for me!</h1>
         <form className="form-group" onSubmit={this.handleSubmit}>
           <h3>What is my current mood?</h3>
@@ -146,6 +157,11 @@ var GeneratorContainer = React.createClass({
             <input className="btn btn-primary" type="submit" value="Submit"/>
           </div>
         </form>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+
 
       </TemplateComponent>
 
