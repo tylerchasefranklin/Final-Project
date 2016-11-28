@@ -36,6 +36,7 @@ var GeneratorContainer = React.createClass({
       'label': e.target.textContent,
       'value': e.target.dataset.option
     };
+    console.log(stateObject);
 
     this.setState(stateObject);
   },
@@ -43,6 +44,7 @@ var GeneratorContainer = React.createClass({
     e.preventDefault();
     var selector = this.state;
     var quoteCollection = this.state.quoteCollection;
+    console.log(selector);
     var quotes = quoteCollection.filter(function(data){
       if(selector.mood.value === undefined){
         throw alert("Please select your mood");
@@ -56,10 +58,13 @@ var GeneratorContainer = React.createClass({
       if(selector.keyword.value === undefined){
         throw alert("Please select a keyword");
       };
+      console.log(data.keywords);
       if(data.keywords.includes(selector.mood.value) && data.keywords.includes(selector.event.value) && data.keywords.includes(selector.looking.value) && data.keywords.includes(selector.keyword.value)){
+        console.log('returning');
         return data;
       };
     });
+
     var selectedQuote = quotes[Math.floor(Math.random() * quotes.length)];
     this.setState({selectedContent: ($(selectedQuote.content).text())});
     this.setState({selectedAuthor: '--' + selectedQuote.title});

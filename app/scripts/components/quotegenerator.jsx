@@ -8,6 +8,9 @@ var UserPostCollection = require('../models/public-content').UserPostCollection;
 var UserPost = require('../models/public-content').UserPost;
 var User = require('../models/user').User;
 
+// new
+var publicPosts = new UserPostCollection();
+
 var HomeContainer = React.createClass({
  render: function(){
    return (
@@ -56,31 +59,85 @@ var QuoteGenerator = React.createClass({
 var PublicMessageBoard = React.createClass({
   getInitialState: function(){
     return {
-      publicPosts: new UserPostCollection(),
+      items: [],
+      disableUpVote: false,
+      disableDownVote: false
     }
   },
   componentWillMount: function(){
-    var publicPosts = this.state.publicPosts;
+    this._fetchItems();
+  },
+  _fetchItems: function(){
     var self = this;
-    var posts = publicPosts.fetch({headers: {
+    publicPosts.fetch({headers: {
       "X-Parse-Application-Id": "spidermanparseserver",
       "X-Parse-REST-API-Key": "webslinger"
     }}).then(function(response){
-      self.setState({publicPosts: response.results})
+      self.setState({items: response.results});
     });
   },
+  handleUpvote: function(post){
+    var self = this;
+    var disableUpVote = this.state.disableUpVote;
+    if(disableUpVote === false){
+      var model = publicPosts.get(post.objectId);
+      var votes = model.get('votes') + 1;
+      model.set('votes', votes);
+      model.save().done(function(){
+        self._fetchItems();
+        self.setState({disableUpVote: true, disableDownVote: true})
+      });
+    } else {
+      return;
+    };
+
+  },
+  handleDownvote: function(post){
+    var self = this;
+    var disableDownVote = this.state.disableDownVote;
+    if(disableDownVote === false){
+      var model = publicPosts.get(post.objectId);
+      var votes = model.get('votes') - 1;
+      self.setState({disableUpVote: true, disableDownVote: true})
+    } else {
+      return;
+    };
+
+    if(post.votes === -4){
+      model.destroy({headers: {
+        "X-Parse-Application-Id": "spidermanparseserver",
+        "X-Parse-REST-API-Key": "webslinger"
+      }}).done(function(){
+        self._fetchItems();
+      });
+    } else {
+      model.set('votes', votes);
+      model.save().done(function(){
+        self._fetchItems();
+      });
+    }
+  },
   render: function(){
-    var publicPosts = this.state.publicPosts;
-    // console.log(publicPosts);
-    var posts = publicPosts.map(function(post){
+    var self = this;
+    var posts = this.state.items.map(function(post){
       return (
-        <li key={post.objectId}>{post.content}</li>
+        <li key={post.objectId}>
+          {post.content}
+          <div className="vote roundrect">
+            <div onClick={self.handleUpvote.bind(self, post)} className="increment up"></div>
+            <div onClick={self.handleDownvote.bind(self, post)} className="increment down"></div>
+
+            <div className="count">{post.votes}</div>
+          </div>
+        </li>
       )
     });
     return (
       <div>
         <h1>Public Message Board Here</h1>
-        <ul>{posts}</ul>
+        <ul>
+          {posts}
+        </ul>
       </div>
     );
   }
@@ -119,7 +176,7 @@ var PublicMessageInput = React.createClass({
       <div className="">
         <h1>Submit Your Own Positivity For Everyone To See!</h1>
         <form onSubmit={this.handleSubmit} className="form-group">
-          <textarea className="form-control" name="content" rows="10" type="text" onChange={this.handleText} value={this.state.userPost.get('textbox')} id="user-public-post" placeholder="Submit Your Own Positivity For Everyone To See!"></textarea>
+          <textarea className="form-control" name="content" rows="3" type="text" onChange={this.handleText} value={this.state.userPost.get('textbox')} id="user-public-post" placeholder="Submit Your Own Positivity For Everyone To See!"></textarea>
           <input className="btn btn-primary" type="submit" value="Submit"/>
         </form>
       </div>

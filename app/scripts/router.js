@@ -4,7 +4,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var SignUpLoginContainer = require('./components/login.jsx').SignUpLoginContainer;
 var HomeContainer = require('./components/quotegenerator.jsx').HomeContainer;
-var JournalEntry = require('./components/journal.jsx').JournalEntry;
+var JournalComposition = require('./components/journal.jsx').JournalComposition;
 var ChatContainer = require('./components/chat.jsx').ChatContainer;
 var UserPostInput = require('./components/publicmessageinput.jsx').UserPostInput;
 var UserProfileContainer = require('./components/profile.jsx').UserProfileContainer;
@@ -56,7 +56,7 @@ var AppRouter = Backbone.Router.extend({
   },
   journal: function(){
     ReactDOM.render(
-      React.createElement(JournalEntry),
+      React.createElement(JournalComposition),
       document.getElementById('app')
     );
   },

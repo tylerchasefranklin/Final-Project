@@ -24,7 +24,7 @@ var UserProfileContainer = React.createClass({
       user.set('profileImage', file.get('url'));
       user.save();
       self.setState({user: user})
-      // localStorage.setItem('image', response.url);
+      localStorage.setItem('user', JSON.stringify(user.toJSON()));
     });
 
   },
@@ -83,6 +83,7 @@ var UploadProfilePic = React.createClass({
 
 var EditUserProfile = React.createClass({
   render: function(){
+    console.log(this.props.user);
     return (
       <div>
         <h1>This is how you will create your profile</h1>

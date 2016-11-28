@@ -4,7 +4,7 @@ var TemplateComponent = require('./template.jsx').TemplateComponent;
 var JournalEntry = require('../models/journalentry').JournalEntry;
 var JournalCollection = require('../models/journalentry').JournalCollection;
 
-var JournalEntry = React.createClass({
+var JournalComposition = React.createClass({
   getInitialState: function(){
     return {
       textbox: '',
@@ -13,16 +13,16 @@ var JournalEntry = React.createClass({
     }
   },
   handleText: function(e){
-    var textbox = e.target.value
-    console.log(textbox);
-    this.setState({textbox: textbox});
+    var journalEntry = this.state.journalEntry;
+    journalEntry.set(e.target.name, e.target.value);
+    this.setState({journalEntry: journalEntry});
   },
   handleSubmit: function(e){
-    var textbox = this.state.textbox;
-
-
-    entryCollection.create(textbox);
-    console.log({textbox: textbox});
+    e.preventDefault();
+    var journalEntry = this.state.journalEntry;
+    journalEntry.save();
+    journalEntry.set('textbox', '');
+    this.setState({journalEntry: journalEntry});
   },
   render: function(){
     return (
@@ -31,7 +31,7 @@ var JournalEntry = React.createClass({
           <h1 className="col-xs-offset-4">Submit A Journal Entry!</h1>
           <label htmlFor="user-public-post" className="col-xs-2 col-form-label">Submit A Journal Entry</label>
           <div className="col-xs-10">
-            <textarea className="form-control" rows="10" type="text" onChange={this.handleText} value={this.state.textbox} id="user-public-post" placeholder="Submit A Journal Entry"></textarea>
+            <textarea className="form-control" rows="10" type="text" onChange={this.handleText} name="entry" value={this.state.journalEntry.get('textbox')} id="user-public-post" placeholder="Submit A Journal Entry"></textarea>
             <input className="btn btn-primary" type="submit" value="Submit"/>
           </div>
         </form>
@@ -42,5 +42,5 @@ var JournalEntry = React.createClass({
 
 
 module.exports = {
-  JournalEntry: JournalEntry
+  JournalComposition: JournalComposition
 };
