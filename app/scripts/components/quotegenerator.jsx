@@ -148,7 +148,7 @@ var PublicMessageInput = React.createClass({
     return {
       textbox: '',
       userPost: new UserPost(),
-      user: new User()
+      user: User.current()
     }
   },
   componentWillMount: function(){
@@ -165,8 +165,10 @@ var PublicMessageInput = React.createClass({
   handleSubmit: function(e){
     e.preventDefault();
     var userPost = this.state.userPost;
-    var user = new User();
-    userPost.save();
+    var user = User.current();
+    userPost.set('votes', 0);
+    userPost.set('user', {"__type":"Pointer","className":"_User","objectId":(user.get("objectId"))});
+    userPost.save()
     // We have to set textbox to empty string, and then reset the state of the model
     userPost.set('textbox', '');
     this.setState({userPost: userPost});

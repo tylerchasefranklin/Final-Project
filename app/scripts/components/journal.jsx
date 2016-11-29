@@ -3,11 +3,13 @@ var Backbone = require('backbone');
 var TemplateComponent = require('./template.jsx').TemplateComponent;
 var JournalEntry = require('../models/journalentry').JournalEntry;
 var JournalCollection = require('../models/journalentry').JournalCollection;
+var User = require('../models/user').User;
 
 var JournalComposition = React.createClass({
   getInitialState: function(){
     return {
       textbox: '',
+      user: User.current(),
       journalEntry: new JournalEntry(),
       entryCollection: new JournalCollection()
     }
@@ -19,8 +21,11 @@ var JournalComposition = React.createClass({
   },
   handleSubmit: function(e){
     e.preventDefault();
+    var user = User.current();
+    console.log(user.get("objectId"));
     var journalEntry = this.state.journalEntry;
-    journalEntry.save();
+    journalEntry.set('user', {"__type":"Pointer","className":"_User","objectId":(user.get("objectId"))});
+    journalEntry.save()
     journalEntry.set('textbox', '');
     this.setState({journalEntry: journalEntry});
   },

@@ -82,13 +82,68 @@ var UploadProfilePic = React.createClass({
 });
 
 var EditUserProfile = React.createClass({
+  getInitialState: function(){
+    return {
+      newState: {},
+      // user: User.current()
+    }
+  },
+  handleInput: function(e){
+    var inputField = e.target;
+    var newState = {};
+    newState[inputField.name] = inputField.value;
+    // console.log(newState);
+    this.setState(newState);
+  },
+  handleSubmit: function(e){
+    e.preventDefault();
+    var newState = this.state;
+    var user = this.props.user;
+    console.log('props', user);
+    console.log(newState);
+    user.set(newState);
+    user.save();
+  },
   render: function(){
     console.log(this.props.user);
     return (
       <div>
-        <h1>This is how you will create your profile</h1>
+        <h1>Update Your Profile</h1>
         <img className="img-rounded img-responsive" src={this.props.user.get('profileImage')}></img>
         <UploadProfilePic uploadPicture={this.props.uploadPicture} />
+        <br></br>
+        <br></br>
+        <div>
+          <form id="profile-update" onSubmit={this.handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="name">Full Name</label>
+              <input className="form-control" onChange={this.handleInput} name="fullname" value={this.state.fullname} id="name" type="name" placeholder="Enter Your Full Name" />
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">E-mail</label>
+              <input className="form-control" onChange={this.handleInput} name="email" value={this.state.email} id="email" type="email" placeholder="Enter Your E-mail" />
+            </div>
+            <div className="form-group">
+              <label htmlFor="phone">Phone Number</label>
+              <input className="form-control" onChange={this.handleInput} name="phone" value={this.state.phone} id="phone" type="tel" placeholder="Enter Your Phone Number" />
+            </div>
+            <div className="form-group">
+              <label htmlFor="address">Address</label>
+              <input className="form-control" onChange={this.handleInput} name="address" value={this.state.address} type="text" id="address" placeholder="Address" />
+            </div>
+            <div className="form-group">
+              <label htmlFor="github-url">GitHub URL</label>
+              <input className="form-control" onChange={this.handleInput} name="github" value={this.state.github} type="url" id="github-url" placeholder="GitHub URL" />
+            </div>
+            <div className="form-group">
+              <label htmlFor="facebook-url">Facebook Page</label>
+              <input className="form-control" onChange={this.handleInput} name="facebook" value={this.state.facebook} type="url" id="facebook-url" placeholder="Facebook URL" />
+            </div>
+
+
+            <input className="btn btn-primary" type="submit" value="Update" />
+          </form>
+        </div>
       </div>
 
     )
