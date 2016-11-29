@@ -103,6 +103,7 @@ var EditUserProfile = React.createClass({
     console.log(newState);
     user.set(newState);
     user.save();
+    localStorage.setItem('user', JSON.stringify(user.toJSON()));
   },
   render: function(){
     var user = this.props.user;

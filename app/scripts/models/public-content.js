@@ -5,11 +5,17 @@ var ParseCollection = require('../parse-utilities.js').ParseCollection;
 
 
 var UserPost = ParseModel.extend({
+  defaults: {
+    voters: []
+  },
   idAttribute: 'objectId',
   urlRoot: 'https://spider-man.herokuapp.com/classes/UserPostPublic'
 });
 
 var UserPostCollection = ParseCollection.extend({
+  comparator: function(model){
+    return -(new Date(model.get('createdAt'))).getTime();
+  },
   model: UserPost,
   url: 'https://spider-man.herokuapp.com/classes/UserPostPublic'
 });

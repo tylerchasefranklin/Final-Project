@@ -7,6 +7,7 @@ var QuoteCollection = require('../models/randomquotes').QuoteCollection;
 var UserPostCollection = require('../models/public-content').UserPostCollection;
 var UserPost = require('../models/public-content').UserPost;
 var User = require('../models/user').User;
+var _ = require('underscore');
 
 // new
 var publicPosts = new UserPostCollection();
@@ -72,63 +73,66 @@ var PublicMessageBoard = React.createClass({
     publicPosts.fetch({headers: {
       "X-Parse-Application-Id": "spidermanparseserver",
       "X-Parse-REST-API-Key": "webslinger"
-    }}).then(function(response){
-      self.setState({items: response.results});
+    }}).then(function(){
+      self.setState({items: publicPosts});
     });
   },
   handleUpvote: function(post){
-    var self = this;
-    var disableUpVote = this.state.disableUpVote;
-    if(disableUpVote === false){
-      var model = publicPosts.get(post.objectId);
-      var votes = model.get('votes') + 1;
-      model.set('votes', votes);
-      model.save().done(function(){
-        self._fetchItems();
-        self.setState({disableUpVote: true, disableDownVote: true})
-      });
-    } else {
-      return;
-    };
-
+    var newVote = post.get('votes') + 1;
+    this.handleVote(post, newVote);
   },
   handleDownvote: function(post){
     var self = this;
-    var disableDownVote = this.state.disableDownVote;
-    if(disableDownVote === false){
-      var model = publicPosts.get(post.objectId);
-      var votes = model.get('votes') - 1;
-      self.setState({disableUpVote: true, disableDownVote: true})
-    } else {
-      return;
-    };
+    var newVote = post.get('votes') - 1;
+    this.handleVote(post, newVote);
 
-    if(post.votes === -4){
-      model.destroy({headers: {
+    if(post.get('votes') === -4){
+      post.destroy({headers: {
         "X-Parse-Application-Id": "spidermanparseserver",
         "X-Parse-REST-API-Key": "webslinger"
       }}).done(function(){
         self._fetchItems();
       });
     } else {
-      model.set('votes', votes);
-      model.save().done(function(){
+      post.set('votes', votes);
+      post.save().done(function(){
         self._fetchItems();
       });
     }
+  },
+  handleVote: function(post, newVote){
+    var self = this;
+    var voters = post.get('voters');
+    // var disableUpVote = this.state.disableUpVote;
+
+    // If this user already voted on this post, bail
+    if(voters.indexOf(User.current().get('objectId')) != -1){
+      return;
+    }
+
+    // Track that the user voted for this post
+    voters.push(User.current().get('objectId'));
+    post.set('voters', _.uniq(voters));
+
+    // Incriment the votes up and save!
+    post.set('votes', newVote);
+    post.save().done(function(){
+      self.setState({items: self.state.items});
+    });
   },
   render: function(){
     var self = this;
     var posts = this.state.items.map(function(post){
       return (
-        <li key={post.objectId}>
-          {post.content}
+        <li key={post.get('objectId')}>
+          {post.get('content')}
           <div className="vote roundrect">
             <div onClick={self.handleUpvote.bind(self, post)} className="increment up"></div>
             <div onClick={self.handleDownvote.bind(self, post)} className="increment down"></div>
 
-            <div className="count">{post.votes}</div>
+            <div className="count">{post.get('votes')}</div>
           </div>
+
         </li>
       )
     });

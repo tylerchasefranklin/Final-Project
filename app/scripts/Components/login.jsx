@@ -135,7 +135,7 @@ var SignUpLoginContainer = React.createClass({
       localStorage.setItem('username', signUpData.username);
       localStorage.setItem('password', signUpData.password);
       localStorage.setItem('token', response.sessionToken);
-      localStorage.setItem('user', JSON.stringify(response));
+      localStorage.setItem('user', JSON.stringify(user.toJSON()));
       if(response.sessionToken){
         Backbone.history.navigate('home/', {trigger: true});
       }
