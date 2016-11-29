@@ -43,12 +43,11 @@ var Navbar = React.createClass({
               <li><a href={"#profile/"}>Profile</a></li>
               <li><a href={"#justforme/"}>JustForMe</a></li>
               <li><a href={"#journal/"}>Journal</a></li>
-              <li><a href={"#chat/"}>Chat</a></li>
               <li><a href={"#post/"}>Post</a></li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
-              <li><a href="#profile/">Signed In As: {username}</a></li>
-              <li><a href={"#profile/"}>Edit Profile</a></li>
+              <li><a href="#profile/">Signed In As: {username[0].toUpperCase() + username.slice(1)}</a></li>
+              <li><a href={"#editProfile/"}>Edit Profile</a></li>
               <li><a href="#" onClick={this.logoutUser}>Logout</a></li>
             </ul>
           </div>
@@ -70,12 +69,11 @@ var Footer = React.createClass({
               <li><a href="#profile/">Profile</a></li>
               <li><a href={"#justforme/"}>JustForMe</a></li>
               <li><a href={"#journal/"}>Journal</a></li>
-              <li><a href={"#chat/"}>Chat</a></li>
               <li><a href={"#post/"}>Post</a></li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
-              <li><a href="#profile/">Signed In As: {username}</a></li>
-              <li><a href="#">Edit Profile</a></li>
+              <li><a href="#profile/">Signed In As: {username[0].toUpperCase() + username.slice(1)}</a></li>
+              <li><a href="#editProfile">Edit Profile</a></li>
               <li><a href="#">Logout</a></li>
             </ul>
           </div>

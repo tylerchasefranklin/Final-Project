@@ -5,11 +5,10 @@ var ReactDOM = require('react-dom');
 var SignUpLoginContainer = require('./components/login.jsx').SignUpLoginContainer;
 var HomeContainer = require('./components/quotegenerator.jsx').HomeContainer;
 var JournalComposition = require('./components/journal.jsx').JournalComposition;
-var ChatContainer = require('./components/chat.jsx').ChatContainer;
 var UserPostInput = require('./components/publicmessageinput.jsx').UserPostInput;
-var UserProfileContainer = require('./components/profile.jsx').UserProfileContainer;
+var EditProfileContainer = require('./components/editprofile.jsx').EditProfileContainer;
 var GeneratorContainer = require('./components/justforme.jsx').GeneratorContainer;
-var GeneratedMaterial = require('./components/generatedmaterial.jsx').GeneratedMaterial;
+var ProfileViewContainer = require('./components/profile.jsx').ProfileViewContainer;
 
 
 var AppRouter = Backbone.Router.extend({
@@ -17,10 +16,10 @@ var AppRouter = Backbone.Router.extend({
     '': 'index',
     'home/': 'home',
     'profile/': 'profile',
+    'editProfile/': 'editProfile',
     'justforme/': 'justforme',
     'mystuff/': 'mystuff',
     'journal/': 'journal',
-    'chat/': 'chat',
     'post/': 'post'
   },
   index: function(){
@@ -32,7 +31,13 @@ var AppRouter = Backbone.Router.extend({
   },
   profile: function(){
     ReactDOM.render(
-      React.createElement(UserProfileContainer),
+      React.createElement(ProfileViewContainer),
+      document.getElementById('app')
+    );
+  },
+  editProfile: function(){
+    ReactDOM.render(
+      React.createElement(EditProfileContainer),
       document.getElementById('app')
     );
   },
@@ -57,12 +62,6 @@ var AppRouter = Backbone.Router.extend({
   journal: function(){
     ReactDOM.render(
       React.createElement(JournalComposition),
-      document.getElementById('app')
-    );
-  },
-  chat: function(){
-    ReactDOM.render(
-      React.createElement(ChatContainer),
       document.getElementById('app')
     );
   },
