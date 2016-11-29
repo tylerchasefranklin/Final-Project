@@ -7,7 +7,6 @@ var SignUpForm = React.createClass({
   getInitialState: function(){
     return {
       username: '',
-      email: '',
       password: '',
     };
   },
@@ -15,11 +14,6 @@ var SignUpForm = React.createClass({
     var username = e.target.value;
     // console.log(username);
     this.setState({username: username});
-  },
-  handleEmail: function(e){
-    var email = e.target.value;
-    // console.log(email);
-    this.setState({email: email});
   },
   handlePassword: function(e){
     var password = e.target.value;
@@ -30,14 +24,13 @@ var SignUpForm = React.createClass({
     e.preventDefault();
     // console.log('signed up!');
     var signUpData = {
-      username: this.state.username,
-      email: this.state.email,
+      username: this.state.username.toLowerCase(),
       password: this.state.password
     };
 
     this.props.signUpNewUser(signUpData);
     // console.log(signUpData);
-    this.setState({username: '', email: '', password: ''});
+    this.setState({username: '', password: ''});
   },
   render: function(){
     return (
@@ -47,10 +40,6 @@ var SignUpForm = React.createClass({
           <div className="form-group">
             <label htmlFor="username">Username</label>
             <input className="form-control" onChange={this.handleUsername} value={this.state.username} name="username" id="username" type="username" placeholder="Username" />
-          </div>
-          <div className="form-group">
-            <label htmlFor="email">Email address</label>
-            <input className="form-control" onChange={this.handleEmail} value={this.state.email} name="email" id="email" type="email" placeholder="E-mail" />
           </div>
           <div className="form-group">
             <label htmlFor="password">Password</label>
@@ -86,7 +75,7 @@ handlePassword: function(e){
 },
 handleLogin: function(e){
   e.preventDefault();
-  var username = this.state.username;
+  var username = this.state.username.toLowerCase();
   var password = this.state.password;
   var url = 'https://spider-man.herokuapp.com/login?';
   var loginUrl = url + 'username=' + encodeURI(username) + '&password=' + encodeURI(password);
@@ -139,11 +128,18 @@ var SignUpLoginContainer = React.createClass({
     var user = new models.User();
     var data = {
       'username': signUpData.username,
-      'email': signUpData.email,
       'password': signUpData.password
     };
     user.set(data);
-    user.save();
+    user.save().then(function(response){
+      localStorage.setItem('username', signUpData.username);
+      localStorage.setItem('password', signUpData.password);
+      localStorage.setItem('token', response.sessionToken);
+      localStorage.setItem('user', JSON.stringify(response));
+      if(response.sessionToken){
+        Backbone.history.navigate('home/', {trigger: true});
+      }
+    });
   },
   render: function(){
     return (

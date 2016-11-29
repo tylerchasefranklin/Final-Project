@@ -105,7 +105,8 @@ var EditUserProfile = React.createClass({
     user.save();
   },
   render: function(){
-    console.log(this.props.user);
+    var user = this.props.user;
+    console.log(user);
     return (
       <div>
         <h1>Update Your Profile</h1>
@@ -117,27 +118,27 @@ var EditUserProfile = React.createClass({
           <form id="profile-update" onSubmit={this.handleSubmit}>
             <div className="form-group">
               <label htmlFor="name">Full Name</label>
-              <input className="form-control" onChange={this.handleInput} name="fullname" value={this.state.fullname} id="name" type="name" placeholder="Enter Your Full Name" />
+              <input className="form-control" onChange={this.handleInput} name="fullname" value={this.state.fullname} id="name" type="name" defaultValue={user.attributes.fullname} placeholder="Enter Your Full Name" />
             </div>
             <div className="form-group">
               <label htmlFor="email">E-mail</label>
-              <input className="form-control" onChange={this.handleInput} name="email" value={this.state.email} id="email" type="email" placeholder="Enter Your E-mail" />
+              <input className="form-control" onChange={this.handleInput} name="email" value={this.state.email} id="email" type="email" defaultValue={user.attributes.email} placeholder="Enter Your E-Mail" />
             </div>
             <div className="form-group">
               <label htmlFor="phone">Phone Number</label>
-              <input className="form-control" onChange={this.handleInput} name="phone" value={this.state.phone} id="phone" type="tel" placeholder="Enter Your Phone Number" />
+              <input className="form-control" onChange={this.handleInput} name="phone" value={this.state.phone} id="phone" type="tel" defaultValue={user.attributes.phone} placeholder="Enter Your Phone Number" />
             </div>
             <div className="form-group">
               <label htmlFor="address">Address</label>
-              <input className="form-control" onChange={this.handleInput} name="address" value={this.state.address} type="text" id="address" placeholder="Address" />
+              <input className="form-control" onChange={this.handleInput} name="address" value={this.state.address} type="text" id="address" defaultValue={user.attributes.address} placeholder="Enter Your Address" />
             </div>
             <div className="form-group">
               <label htmlFor="github-url">GitHub URL</label>
-              <input className="form-control" onChange={this.handleInput} name="github" value={this.state.github} type="url" id="github-url" placeholder="GitHub URL" />
+              <input className="form-control" onChange={this.handleInput} name="github" value={this.state.github} type="url" id="github-url" defaultValue={user.attributes.github} placeholder="Enter Your GitHub URL" />
             </div>
             <div className="form-group">
               <label htmlFor="facebook-url">Facebook Page</label>
-              <input className="form-control" onChange={this.handleInput} name="facebook" value={this.state.facebook} type="url" id="facebook-url" placeholder="Facebook URL" />
+              <input className="form-control" onChange={this.handleInput} name="facebook" value={this.state.facebook} type="url" id="facebook-url" defaultValue={user.attributes.facebook} placeholder="Enter Your Facebook URL" />
             </div>
 
 

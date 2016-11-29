@@ -47,7 +47,7 @@ var Navbar = React.createClass({
               <li><a href={"#post/"}>Post</a></li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
-              <li><a href="#">Signed In As: {username}</a></li>
+              <li><a href="#profile/">Signed In As: {username}</a></li>
               <li><a href={"#profile/"}>Edit Profile</a></li>
               <li><a href="#" onClick={this.logoutUser}>Logout</a></li>
             </ul>
@@ -60,6 +60,7 @@ var Navbar = React.createClass({
 
 var Footer = React.createClass({
   render: function(){
+    var username = localStorage.username;
     return (
       <nav className="navbar navbar-inverse navbar-bottom">
         <div className="container-fluid">
@@ -73,6 +74,7 @@ var Footer = React.createClass({
               <li><a href={"#post/"}>Post</a></li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
+              <li><a href="#profile/">Signed In As: {username}</a></li>
               <li><a href="#">Edit Profile</a></li>
               <li><a href="#">Logout</a></li>
             </ul>
