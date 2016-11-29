@@ -5,7 +5,8 @@ var MenuItem = require('react-bootstrap/lib/MenuItem');
 var TemplateComponent = require('./template.jsx').TemplateComponent;
 var $ = require('jquery');
 var QuoteCollection = require('../models/randomquotes').QuoteCollection;
-
+var UserMaterial = require('../models/usercollection').UserMaterial;
+var User = require('../models/user').User;
 
 var GeneratorContainer = React.createClass({
   getInitialState: function(){
@@ -14,7 +15,8 @@ var GeneratorContainer = React.createClass({
       event: {'label': ''},
       looking: {'label': ''},
       keyword: {'label': ''},
-      quoteCollection: new QuoteCollection()
+      quoteCollection: new QuoteCollection(),
+      user: User.current()
     }
   },
   componentWillMount: function(){
@@ -61,8 +63,20 @@ var GeneratorContainer = React.createClass({
     });
 
     var selectedQuote = quotes[Math.floor(Math.random() * quotes.length)];
+    this.setState({selectedQuote: selectedQuote});
     this.setState({selectedContent: ($(selectedQuote.content).text())});
     this.setState({selectedAuthor: '--' + selectedQuote.title});
+  },
+  handleSave: function(e){
+    e.preventDefault();
+    var selectedContent = this.state.selectedContent;
+    var selectedAuthor = this.state.selectedAuthor;
+    var user = this.state.user;
+    var userMaterial = new UserMaterial();
+    userMaterial.set({content: selectedContent});
+    userMaterial.set({author: selectedAuthor});
+    userMaterial.set('user', {"__type":"Pointer","className":"_User","objectId":(user.get("objectId"))});
+    userMaterial.save();
   },
   render: function(){
     var stateObject = this.state.stateObject;
@@ -71,12 +85,15 @@ var GeneratorContainer = React.createClass({
     return (
       <TemplateComponent>
 
-        <div>
+        <form onSubmit={this.handleSave} className="well">
           {selectedContent}
           <br></br>
           <br></br>
           {selectedAuthor}
-        </div>
+          <br></br>
+          <br></br>
+          <input className="btn btn-primary" type="submit" value="Save This Quote" />
+        </form>
 
         <h1>Find me something for me!</h1>
         <form className="form-group" onSubmit={this.handleSubmit}>

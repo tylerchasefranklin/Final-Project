@@ -16,7 +16,6 @@ var JournalComposition = React.createClass({
     var inputField = e.target;
     var newState = {};
     newState[inputField.name] = inputField.value;
-    console.log(newState);
     this.setState(newState);
   },
   handleSubmit: function(e){
@@ -24,8 +23,6 @@ var JournalComposition = React.createClass({
     var newState = this.state;
     var user = this.state.user;
     var journalEntry = new JournalEntry();
-    console.log('props', user);
-    console.log(newState);
     journalEntry.set(newState);
     journalEntry.set('user', {"__type":"Pointer","className":"_User","objectId":(user.get("objectId"))});
     journalEntry.save();
@@ -45,7 +42,49 @@ var JournalComposition = React.createClass({
           </div>
           <input className="btn btn-primary" type="submit" value="Submit"/>
         </form>
+        <MyJournalEntries user={this.state.user}/>
       </TemplateComponent>
+    )
+  }
+});
+
+var MyJournalEntries = React.createClass({
+  getInitialState: function(){
+    return {
+      myJournalEntries: []
+    }
+  },
+  componentWillMount: function(){
+    var journalEntries = new JournalCollection();
+    var self = this;
+    var myJournalEntries = journalEntries.fetch({headers: {
+      "X-Parse-Application-Id": "spidermanparseserver",
+      "X-Parse-REST-API-Key": "webslinger"
+    }}).then(function(response){
+      self.setState({myJournalEntries: response.results});
+    })
+  },
+  render: function(){
+    var myJournalEntries = this.state.myJournalEntries;
+    var user = this.props.user;
+    var userId = user.attributes.objectId;
+    var myEntries = myJournalEntries.map(function(entry){
+      if(userId === entry.user.objectId){
+        return (
+          <div key={entry.objectId}>
+            {entry.entry}
+            <br></br>
+            <br></br>
+            {entry.mood}
+          </div>
+        )
+      }
+    })
+    return (
+      <div>
+        {myEntries}
+      </div>
+
     )
   }
 });

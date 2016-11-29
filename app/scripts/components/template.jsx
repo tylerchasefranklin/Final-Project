@@ -41,6 +41,7 @@ var Navbar = React.createClass({
           <div className="collapse navbar-collapse">
             <ul className="nav navbar-nav">
               <li><a href={"#profile/"}>Profile</a></li>
+              <li><a href={"#myCollection/"}>My Collection</a></li>
               <li><a href={"#justforme/"}>JustForMe</a></li>
               <li><a href={"#journal/"}>Journal</a></li>
               <li><a href={"#post/"}>Post</a></li>
@@ -67,6 +68,7 @@ var Footer = React.createClass({
             <a className="navbar-brand" href={"#home/"}>Home</a>
             <ul className="nav navbar-nav">
               <li><a href="#profile/">Profile</a></li>
+              <li><a href={"#myCollection/"}>My Collection</a></li>
               <li><a href={"#justforme/"}>JustForMe</a></li>
               <li><a href={"#journal/"}>Journal</a></li>
               <li><a href={"#post/"}>Post</a></li>

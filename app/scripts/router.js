@@ -9,6 +9,7 @@ var UserPostInput = require('./components/publicmessageinput.jsx').UserPostInput
 var EditProfileContainer = require('./components/editprofile.jsx').EditProfileContainer;
 var GeneratorContainer = require('./components/justforme.jsx').GeneratorContainer;
 var ProfileViewContainer = require('./components/profile.jsx').ProfileViewContainer;
+var MyCollection = require('./components/mycollection.jsx').MyCollection;
 
 
 var AppRouter = Backbone.Router.extend({
@@ -20,7 +21,8 @@ var AppRouter = Backbone.Router.extend({
     'justforme/': 'justforme',
     'mystuff/': 'mystuff',
     'journal/': 'journal',
-    'post/': 'post'
+    'post/': 'post',
+    'myCollection/': 'myCollection'
   },
   index: function(){
     // console.log('index screen working');
@@ -68,6 +70,12 @@ var AppRouter = Backbone.Router.extend({
   post: function(){
     ReactDOM.render(
       React.createElement(UserPostInput),
+      document.getElementById('app')
+    );
+  },
+  myCollection: function(){
+    ReactDOM.render(
+      React.createElement(MyCollection),
       document.getElementById('app')
     );
   }
