@@ -65,11 +65,11 @@ var Footer = React.createClass({
         <div id="footer" className="navbar-fixed-bottom footer container-fluid">
           <div className="row">
             <div className="icon-holder col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <a href={"#home/"}><img className="footer-icon first-icon img-rounded" src="../app/images/Post.png"></img></a>
-              <a href={"#profile/"}><img className="col-lg-offset-1 footer-icon img-rounded" src="../app/images/Profile.png"></img></a>
-              <a href={"#justforme/"}><img className="col-lg-offset-1 footer-icon img-rounded" src="../app/images/Quote Gen.png"></img></a>
-              <a href={"#journal/"}><img className="col-lg-offset-1 footer-icon img-rounded" src="../app/images/Journal.png"></img></a>
-              <a href={"#post/"}><img className="col-lg-offset-1 footer-icon img-rounded" src="../app/images/Mood Tracker.png"></img></a>
+              <a href={"#home/"}><img className="footer-icon first-icon img-rounded" src="images/Post.png"></img></a>
+              <a href={"#profile/"}><img className="col-lg-offset-1 footer-icon img-rounded" src="images/Profile.png"></img></a>
+              <a href={"#justforme/"}><img className="col-lg-offset-1 footer-icon img-rounded" src="images/Quote Gen.png"></img></a>
+              <a href={"#journal/"}><img className="col-lg-offset-1 footer-icon img-rounded" src="images/Journal.png"></img></a>
+              <a href={"#post/"}><img className="col-lg-offset-1 footer-icon img-rounded" src="images/Mood Tracker.png"></img></a>
             </div>
           </div>
         </div>
