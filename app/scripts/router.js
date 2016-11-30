@@ -19,13 +19,11 @@ var AppRouter = Backbone.Router.extend({
     'profile/': 'profile',
     'editProfile/': 'editProfile',
     'justforme/': 'justforme',
-    'mystuff/': 'mystuff',
     'journal/': 'journal',
     'post/': 'post',
     'myCollection/': 'myCollection'
   },
   index: function(){
-    // console.log('index screen working');
     ReactDOM.render(
       React.createElement(SignUpLoginContainer),
       document.getElementById('app')
@@ -46,12 +44,6 @@ var AppRouter = Backbone.Router.extend({
   justforme: function(){
     ReactDOM.render(
       React.createElement(GeneratorContainer),
-      document.getElementById('app')
-    );
-  },
-  mystuff: function(){
-    ReactDOM.render(
-      React.createElement(GeneratedMaterial),
       document.getElementById('app')
     );
   },

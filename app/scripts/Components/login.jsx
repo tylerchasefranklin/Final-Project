@@ -34,7 +34,7 @@ var SignUpForm = React.createClass({
   },
   render: function(){
     return (
-      <div className="col-lg-12">
+      <div className="col-lg-11 col-lg-offset-1 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3 signup-form">
         <form id="signup" onSubmit={this.handleSubmit} className="well col-lg-3 col-lg-offset-4">
           <h2>Need an Account? Sign Up!</h2>
           <div className="form-group">
@@ -102,7 +102,7 @@ handleLogin: function(e){
 },
   render: function(){
     return(
-      <div className="col-lg-12">
+      <div className="col-lg-11 col-lg-offset-1 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3 login-form">
         <form id="login" onSubmit={this.handleLogin} className="well col-lg-3 col-lg-offset-4">
           <h2>Please Login</h2>
           <div className="form-group">
@@ -145,8 +145,8 @@ var SignUpLoginContainer = React.createClass({
   },
   render: function(){
     return (
-      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <h1 className="col-lg-offset-4">Welcome To The Happy Place!</h1>
+      <div className="container-fluid">
+        <h1 className="login-title">Welcome To The Happy Place!</h1>
         <LoginForm />
         <SignUpForm signUpNewUser={this.signUpNewUser}/>
       </div>

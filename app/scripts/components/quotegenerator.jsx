@@ -108,7 +108,7 @@ var PublicMessageBoard = React.createClass({
     voters.push(User.current().get('objectId'));
     post.set('voters', _.uniq(voters));
 
-    // Incriment the votes up and save!
+    // Increment the votes up and save!
     post.set('votes', newVote);
     post.save().done(function(){
       self.setState({items: self.state.items});

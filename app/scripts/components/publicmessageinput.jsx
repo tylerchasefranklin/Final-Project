@@ -46,7 +46,7 @@ var UserPostInput = React.createClass({
   render: function(){
     return (
       <TemplateComponent>
-        <div className="col-lg-12">
+        <div className="post-box col-lg-12">
           <h1 className="post-title">Submit Your Own Positivity For Everyone To See!</h1>
           <div className="col-lg-6 col-lg-offset-3">
             <form onSubmit={this.handleSubmit} className="form-group">

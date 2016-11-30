@@ -32,10 +32,12 @@ var JournalComposition = React.createClass({
       <TemplateComponent>
         <div className="col-lg-12">
           <h1 className="journal-title">Submit A Journal Entry!</h1>
+          <br></br>
+          <br></br>
           <div>
-            <form onSubmit={this.handleSubmit} className="col-lg-8 col-lg-offset-2 form-group">
+            <form onSubmit={this.handleSubmit} className="col-lg-6 col-lg-offset-3 form-group">
               <div className="">
-                <textarea className="form-control" rows="10" type="text" onChange={this.handleInput} name="entry" value={this.state.entry} id="user-public-post" placeholder="Submit A Journal Entry"></textarea>
+                <textarea id="journal-text" className="form-control" rows="10" type="text" onChange={this.handleInput} name="entry" value={this.state.entry} placeholder="Submit A Journal Entry"></textarea>
               </div>
               <div className="form-group">
                 <h3 className="mood-title">My Current Mood</h3>

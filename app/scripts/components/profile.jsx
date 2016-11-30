@@ -19,7 +19,7 @@ var ProfileViewContainer = React.createClass({
         <div className="col-lg-3">
           <img id="profile-image" className="img-rounded img-responsive" src={this.state.user.get('profileImage')}></img>
         </div>
-        <div id="user-info" className="col-lg-4">
+        <div id="user-info" className="col-lg-8">
           <p className="profile-item"><span className="profile-item-name">Name: </span>{user.get('fullname')}</p>
           <p className="profile-item"><span className="profile-item-name">E-Mail: </span>{user.get('email')}</p>
           <p className="profile-item"><span className="profile-item-name">Phone Number: </span>{user.get('phone')}</p>
