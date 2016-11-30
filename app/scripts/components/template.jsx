@@ -7,7 +7,7 @@ var TemplateComponent = React.createClass({
     return (
       <div className="wrapper">
         <Navbar />
-        <div className="container">
+        <div className="container-fluid">
           <div className="row">
 
 

@@ -42,11 +42,9 @@ var MyCollection = React.createClass({
       console.log(item);
       if(userId === item.get('user').objectId){
         return (
-          <div key={item.get('objectId')}>
-            <div>
-              {item.get('content')}{item.get('author')}
-            </div>
-            <form>
+          <div className="col-lg-10 collection-item" key={item.get('objectId')}>
+            {item.get('content')}{item.get('author')}
+            <form className="col-lg-2">
               <input onClick={function(){self.handleDelete(item)}} className="btn btn-primary" type="delete" defaultValue="Delete"/>
             </form>
           </div>
@@ -55,7 +53,10 @@ var MyCollection = React.createClass({
     });
     return(
       <TemplateComponent>
-        {myMaterials}
+        <h1 className="collection-title">My Collection</h1>
+        <div className="well col-lg-10 col-lg-offset-1">
+            {myMaterials}
+        </div>
       </TemplateComponent>
     )
   }

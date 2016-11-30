@@ -16,13 +16,17 @@ var ProfileViewContainer = React.createClass({
     console.log(user);
     return (
       <TemplateComponent>
-        <img className="img-rounded img-responsive" src={this.state.user.get('profileImage')}></img>
-        <p>{user.get('fullname')}</p>
-        <p>{user.get('email')}</p>
-        <p>{user.get('phone')}</p>
-        <p>{user.get('address')}</p>
-        <p>{user.get('github')}</p>
-        <p>{user.get('facebook')}</p>
+        <div className="col-lg-3">
+          <img id="profile-image" className="img-rounded img-responsive" src={this.state.user.get('profileImage')}></img>
+        </div>
+        <div id="user-info" className="col-lg-4">
+          <p className="profile-item"><span className="profile-item-name">Name: </span>{user.get('fullname')}</p>
+          <p className="profile-item"><span className="profile-item-name">E-Mail: </span>{user.get('email')}</p>
+          <p className="profile-item"><span className="profile-item-name">Phone Number: </span>{user.get('phone')}</p>
+          <p className="profile-item"><span className="profile-item-name">Address: </span>{user.get('address')}</p>
+          <p className="profile-item"><span className="profile-item-name">GitHub Page: </span>{user.get('github')}</p>
+          <p className="profile-item"><span className="profile-item-name">Facebook Page: </span>{user.get('facebook')}</p>
+        </div>
       </TemplateComponent>
     )
   }

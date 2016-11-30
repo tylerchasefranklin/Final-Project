@@ -34,8 +34,8 @@ var SignUpForm = React.createClass({
   },
   render: function(){
     return (
-      <div>
-        <form id="signup" onSubmit={this.handleSubmit}>
+      <div className="col-lg-12">
+        <form id="signup" onSubmit={this.handleSubmit} className="well col-lg-3 col-lg-offset-4">
           <h2>Need an Account? Sign Up!</h2>
           <div className="form-group">
             <label htmlFor="username">Username</label>
@@ -102,18 +102,20 @@ handleLogin: function(e){
 },
   render: function(){
     return(
-      <form id="login" onSubmit={this.handleLogin}>
-        <h2>Please Login</h2>
-        <div className="form-group">
-          <label htmlFor="username">Username</label>
-          <input className="form-control" onChange={this.handleUsername} value={this.state.username} name="username" id="username" type="username" placeholder="Username" />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password-login">Password</label>
-          <input className="form-control" onChange={this.handlePassword} value={this.state.password} name="password" id="password-login" type="password" placeholder="Password" />
-        </div>
-        <input className="btn btn-primary" type="submit" value="Login" />
-      </form>
+      <div className="col-lg-12">
+        <form id="login" onSubmit={this.handleLogin} className="well col-lg-3 col-lg-offset-4">
+          <h2>Please Login</h2>
+          <div className="form-group">
+            <label htmlFor="username">Username</label>
+            <input className="form-control" onChange={this.handleUsername} value={this.state.username} name="username" id="username" type="username" placeholder="Username" />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password-login">Password</label>
+            <input className="form-control" onChange={this.handlePassword} value={this.state.password} name="password" id="password-login" type="password" placeholder="Password" />
+          </div>
+          <input className="btn btn-primary" type="submit" value="Login" />
+        </form>
+      </div>
     )
   }
 });
@@ -137,16 +139,16 @@ var SignUpLoginContainer = React.createClass({
       localStorage.setItem('token', response.sessionToken);
       localStorage.setItem('user', JSON.stringify(user.toJSON()));
       if(response.sessionToken){
-        Backbone.history.navigate('home/', {trigger: true});
+        Backbone.history.navigate('editProfile/', {trigger: true});
       }
     });
   },
   render: function(){
     return (
-      <div>
-        <h1>Welcome To The Portal of Positivity!!!</h1>
-        <SignUpForm signUpNewUser={this.signUpNewUser}/>
+      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h1 className="col-lg-offset-4">Welcome To The Happy Place!</h1>
         <LoginForm />
+        <SignUpForm signUpNewUser={this.signUpNewUser}/>
       </div>
     )
   }

@@ -46,18 +46,19 @@ var UserPostInput = React.createClass({
   render: function(){
     return (
       <TemplateComponent>
-        <form onSubmit={this.handleSubmit} className="form-group row">
-          <h1>Submit Your Own Positivity For Everyone To See!</h1>
-          <label htmlFor="user-public-post" className="col-xs-2 col-form-label">Submit Your Own Positivity For Everyone To See!</label>
-          <div className="col-xs-10">
-            <textarea onChange={this.handleInput} name="content" className="form-control" rows="10" type="text" value={this.state.content} id="user-public-post" placeholder="Submit Your Own Positivity For Everyone To See!"></textarea>
+        <div className="col-lg-12">
+          <h1 className="post-title">Submit Your Own Positivity For Everyone To See!</h1>
+          <div className="col-lg-6 col-lg-offset-3">
+            <form onSubmit={this.handleSubmit} className="form-group">
+              <textarea onChange={this.handleInput} name="content" className="form-control" rows="10" type="text" value={this.state.content} id="user-public-post" placeholder="Submit Your Own Positivity For Everyone To See!"></textarea>
+              <button className="btn btn-primary">Send</button>
               <label htmlFor="private" className="radio-inline">Private</label>
                 <input onClick={this.handleInput} type="radio" name="type" value="private"/>
               <label htmlFor="public" className="radio-inline">Public</label>
                 <input onClick={this.handleInput} type="radio" name="type" value="public" />
-            <button className="btn btn-primary">Send</button>
+            </form>
           </div>
-        </form>
+        </div>
       </TemplateComponent>
     );
   }

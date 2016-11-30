@@ -30,18 +30,22 @@ var JournalComposition = React.createClass({
   render: function(){
     return (
       <TemplateComponent>
-        <form onSubmit={this.handleSubmit} className="form-group row">
-          <h1 className="col-xs-offset-4">Submit A Journal Entry!</h1>
-          <label htmlFor="user-public-post" className="col-xs-2 col-form-label">Submit A Journal Entry</label>
-          <div className="col-xs-10">
-            <textarea className="form-control" rows="10" type="text" onChange={this.handleInput} name="entry" value={this.state.entry} id="user-public-post" placeholder="Submit A Journal Entry"></textarea>
+        <div className="col-lg-12">
+          <h1 className="journal-title">Submit A Journal Entry!</h1>
+          <div>
+            <form onSubmit={this.handleSubmit} className="col-lg-8 col-lg-offset-2 form-group">
+              <div className="">
+                <textarea className="form-control" rows="10" type="text" onChange={this.handleInput} name="entry" value={this.state.entry} id="user-public-post" placeholder="Submit A Journal Entry"></textarea>
+              </div>
+              <div className="form-group">
+                <h3 className="mood-title">My Current Mood</h3>
+                <input className="form-control" onChange={this.handleInput} name="mood" value={this.state.mood} id="mood" type="mood"  placeholder="My Current Mood" />
+              </div>
+              <input className="btn btn-primary" type="submit" value="Submit"/>
+            </form>
           </div>
-          <div className="form-group">
-            <label htmlFor="name">My Current Mood</label>
-            <input className="form-control" onChange={this.handleInput} name="mood" value={this.state.mood} id="mood" type="mood"  placeholder="My Current Mood" />
-          </div>
-          <input className="btn btn-primary" type="submit" value="Submit"/>
-        </form>
+        </div>
+        <h2 className="journal-entries-title">My Journal Entries</h2>
         <MyJournalEntries user={this.state.user}/>
       </TemplateComponent>
     )
@@ -81,7 +85,7 @@ var MyJournalEntries = React.createClass({
       }
     })
     return (
-      <div>
+      <div className="well col-lg-12">
         {myEntries}
       </div>
 
