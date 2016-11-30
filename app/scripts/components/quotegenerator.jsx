@@ -150,7 +150,6 @@ var PublicMessageBoard = React.createClass({
 var PublicMessageInput = React.createClass({
   getInitialState: function(){
     return {
-      textbox: '',
       userPost: new UserPost(),
       user: User.current()
     }
@@ -176,6 +175,7 @@ var PublicMessageInput = React.createClass({
     // We have to set textbox to empty string, and then reset the state of the model
     userPost.set('textbox', '');
     this.setState({userPost: userPost});
+    
   },
   render: function(){
     return (
