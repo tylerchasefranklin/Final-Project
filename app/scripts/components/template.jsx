@@ -64,8 +64,8 @@ var Footer = React.createClass({
     return (
         <div className="footer container-fluid">
           <div className="row">
-            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <a href={"#home/"}><img className="col-lg-offset-1 footer-icon first-icon img-rounded" src="../app/images/Post.png"></img></a>
+            <div className="icon-holder col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <a href={"#home/"}><img className="footer-icon first-icon img-rounded" src="../app/images/Post.png"></img></a>
               <a href={"#profile/"}><img className="col-lg-offset-1 footer-icon img-rounded" src="../app/images/Profile.png"></img></a>
               <a href={"#justforme/"}><img className="col-lg-offset-1 footer-icon img-rounded" src="../app/images/Quote Gen.png"></img></a>
               <a href={"#journal/"}><img className="col-lg-offset-1 footer-icon img-rounded" src="../app/images/Journal.png"></img></a>

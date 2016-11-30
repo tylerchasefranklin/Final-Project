@@ -17,7 +17,6 @@ var HomeContainer = React.createClass({
    return (
      <TemplateComponent>
        <QuoteGenerator />
-
        <PublicMessageBoard />
      </TemplateComponent>
    )
@@ -118,11 +117,11 @@ var PublicMessageBoard = React.createClass({
     var self = this;
     var posts = this.state.items.map(function(post){
       return (
-        <div id="public-post" className="well col-lg-11" key={post.get('objectId')}>
-            <div id="public-message" className="col-lg-11">
+        <div id="public-post" className="well col-xs-12" key={post.get('objectId')}>
+            <div id="public-message" className="col-xs-8">
               "{post.get('content')}"
             </div>
-            <div className="vote roundrect">
+            <div className="col-xs-1 col-xs-offset-1 col-lg-offset-3 col-md-offset-2 col-sm-offset-2 vote roundrect">
               <div onClick={self.handleUpvote.bind(self, post)} className="increment up"></div>
               <div onClick={self.handleDownvote.bind(self, post)} className="increment down"></div>
               <div className="count">{post.get('votes')}</div>
@@ -131,9 +130,9 @@ var PublicMessageBoard = React.createClass({
       )
     });
     return (
-      <div className="col-lg-12">
+      <div className="container">
         <h1 id="message-board">Public Message Board</h1>
-        <div className="col-lg-11 col-lg-offset-1">
+        <div className="row">
           {posts}
         </div>
       </div>

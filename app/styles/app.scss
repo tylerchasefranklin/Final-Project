@@ -10,7 +10,7 @@ $icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
 
 
 
-$size : 10rem;
+$size : 7rem;
 $border-width : .5rem;
 $radius : 1rem; /* try 50% */
 $transition : .3s;
@@ -34,19 +34,18 @@ img {
 }
 
 .roundrect {
+  padding: 0;
   .up { border-radius: 2rem 2rem 0 0; }
   .down { border-radius: 0 0 2rem 2rem; }
   .count { border-radius: .5rem .5rem; }
 }
 
 .vote {
-  display: flex;
-  flex-direction: column;
   font-family: "Noto Sans";
   position: relative;
   width: $size;
   height: $size;
-  margin: 1rem;
+  // margin: 1rem;
 }
 
 .increment {
@@ -89,10 +88,6 @@ img {
   pointer-events: none;
 }
 
-.bump {
-  animation: bump 200ms;
-}
-
 #app {
 }
 
@@ -106,16 +101,18 @@ img {
 
 #message-board {
   text-align: center;
+  font-family: 'Permanent Marker', cursive;
 }
 
 #public-message {
   font-size: 20px;
-  height: 150px;
-  line-height: 150px;
+  font-family: 'Permanent Marker', cursive;
+  // height: 150px;
+  // line-height: 150px;
 }
 
 #public-post {
-  background-color: lightgray;
+  // background-color: lightgray;
 }
 
 #user-info {
@@ -166,7 +163,7 @@ img {
 }
 
 .collection-item {
-  font-size: 30px;
+  font-size: 20px;
 }
 
 .login-title {
@@ -196,17 +193,40 @@ img {
   // margin-right: 140px;
 }
 
+.icon-holder {
+  text-align: center;
+}
+
 .post-box {
   min-height: 460px;
 }
 
+#profile {
+  min-height: 650px;
+  font-family: 'Gloria Hallelujah', cursive;
+}
+
 #journal-text {
   background: url(http://i.stack.imgur.com/ynxjD.png);
-  font-family: 'Rock Salt', cursive;
+  font-family: 'Rock Salt', cursive !important;
   background-position: -5px 1px;
   height: 305px;
   font: normal 14px verdana;
   line-height: 25px;
   padding: 2px 10px;
   border: solid 1px #ddd;
+}
+
+#collection-button {
+  padding: 5px 0;
+  max-width: 75px;
+}
+
+#collection {
+  font-family: 'Eczar', serif;
+  min-height: 650px;
+}
+
+#justforme {
+  min-height: 650px;
 }

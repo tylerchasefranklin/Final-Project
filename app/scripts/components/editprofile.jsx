@@ -99,42 +99,45 @@ var EditUserProfile = React.createClass({
     var user = this.props.user;
     console.log(user);
     return (
-      <div className="col-lg-12">
-        <div className="col-lg-3">
-          <img className="img-rounded img-responsive" src={this.props.user.get('profileImage')}></img>
-        <UploadProfilePic uploadPicture={this.props.uploadPicture} />
-        </div>
-          <div className="col-lg-6">
-            <form id="profile-update" onSubmit={this.handleSubmit}>
-              <div className="form-group">
-                <label htmlFor="name">Full Name</label>
-                <input className="form-control" onChange={this.handleInput} name="fullname" value={this.state.fullname} id="name" type="name" defaultValue={user.attributes.fullname} placeholder="Enter Your Full Name" />
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-xs-12">
+            <div className="col-xs-8 col-sm-4 col-md-5 col-lg-3">
+              <img className="img-rounded img-responsive" src={this.props.user.get('profileImage')}></img>
+            <UploadProfilePic uploadPicture={this.props.uploadPicture} />
+            </div>
+              <div className="col-xs-12 col-sm-5 col-md-5 col-lg-6">
+                <form id="profile-update" onSubmit={this.handleSubmit}>
+                  <div className="form-group">
+                    <label htmlFor="name">Full Name</label>
+                    <input className="form-control" onChange={this.handleInput} name="fullname" value={this.state.fullname} id="name" type="name" defaultValue={user.attributes.fullname} placeholder="Enter Your Full Name" />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="email">E-mail</label>
+                    <input className="form-control" onChange={this.handleInput} name="email" value={this.state.email} id="email" type="email" defaultValue={user.attributes.email} placeholder="Enter Your E-Mail" />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="phone">Phone Number</label>
+                    <input className="form-control" onChange={this.handleInput} name="phone" value={this.state.phone} id="phone" type="tel" defaultValue={user.attributes.phone} placeholder="Enter Your Phone Number" />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="address">Address</label>
+                    <input className="form-control" onChange={this.handleInput} name="address" value={this.state.address} type="text" id="address" defaultValue={user.attributes.address} placeholder="Enter Your Address" />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="github-url">GitHub URL</label>
+                    <input className="form-control" onChange={this.handleInput} name="github" value={this.state.github} type="url" id="github-url" defaultValue={user.attributes.github} placeholder="Enter Your GitHub URL" />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="facebook-url">Facebook Page</label>
+                    <input className="form-control" onChange={this.handleInput} name="facebook" value={this.state.facebook} type="url" id="facebook-url" defaultValue={user.attributes.facebook} placeholder="Enter Your Facebook URL" />
+                  </div>
+                  <input className="btn btn-primary" type="submit" value="Update" />
+                </form>
               </div>
-              <div className="form-group">
-                <label htmlFor="email">E-mail</label>
-                <input className="form-control" onChange={this.handleInput} name="email" value={this.state.email} id="email" type="email" defaultValue={user.attributes.email} placeholder="Enter Your E-Mail" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="phone">Phone Number</label>
-                <input className="form-control" onChange={this.handleInput} name="phone" value={this.state.phone} id="phone" type="tel" defaultValue={user.attributes.phone} placeholder="Enter Your Phone Number" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="address">Address</label>
-                <input className="form-control" onChange={this.handleInput} name="address" value={this.state.address} type="text" id="address" defaultValue={user.attributes.address} placeholder="Enter Your Address" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="github-url">GitHub URL</label>
-                <input className="form-control" onChange={this.handleInput} name="github" value={this.state.github} type="url" id="github-url" defaultValue={user.attributes.github} placeholder="Enter Your GitHub URL" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="facebook-url">Facebook Page</label>
-                <input className="form-control" onChange={this.handleInput} name="facebook" value={this.state.facebook} type="url" id="facebook-url" defaultValue={user.attributes.facebook} placeholder="Enter Your Facebook URL" />
-              </div>
-              <input className="btn btn-primary" type="submit" value="Update" />
-            </form>
           </div>
+        </div>
       </div>
-
     )
   }
 })

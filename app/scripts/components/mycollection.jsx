@@ -42,10 +42,12 @@ var MyCollection = React.createClass({
       console.log(item);
       if(userId === item.get('user').objectId){
         return (
-          <div className="col-lg-10 collection-item" key={item.get('objectId')}>
-            {item.get('content')}{item.get('author')}
-            <form className="col-lg-2">
-              <input onClick={function(){self.handleDelete(item)}} className="btn btn-primary" type="delete" defaultValue="Delete"/>
+          <div className="well col-xs-12 collection-item" key={item.get('objectId')}>
+            <div className="col-xs-9">
+              {item.get('content')}{item.get('author')}
+            </div>
+            <form className="col-xs-2 col-xs-offset-1 col-lg-1 col-lg-offset-2 col-md-1 col-md-offset-2 col-sm-1 col-sm-offset-1">
+              <input onClick={function(){self.handleDelete(item)}} id="collection-button" className="btn btn-danger" type="delete" defaultValue="Delete"/>
             </form>
           </div>
         );
@@ -53,9 +55,13 @@ var MyCollection = React.createClass({
     });
     return(
       <TemplateComponent>
-        <h1 className="collection-title">My Collection</h1>
-        <div className="well col-lg-10 col-lg-offset-1">
-            {myMaterials}
+        <div id="collection" className="container">
+          <div className="row">
+            <h1 className="collection-title">My Collection</h1>
+            <div className="col-xs-12">
+                {myMaterials}
+            </div>
+          </div>
         </div>
       </TemplateComponent>
     )
