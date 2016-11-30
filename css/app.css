@@ -5766,6 +5766,9 @@ button.close {
 *::after {
   box-sizing: border-box; }
 
+body {
+  background-color: #6F7E8E; }
+
 img {
   max-width: 100%; }
 
@@ -5830,9 +5833,6 @@ img {
   -webkit-animation: bump 200ms;
           animation: bump 200ms; }
 
-#app {
-  background-color: #FB3FA3; }
-
 #random-quote {
   text-align: center;
   font-size: 35px;
@@ -5852,7 +5852,7 @@ img {
   background-color: lightgray; }
 
 #user-info {
-  font-size: 30px; }
+  font-size: 25px; }
 
 .profile-item {
   color: #53D9FD; }
@@ -5866,7 +5866,8 @@ img {
   font-family: 'Fredericka the Great', cursive; }
 
 .journal-title {
-  text-align: center; }
+  text-align: center;
+  font-family: 'Rock Salt', cursive; }
 
 .mood-title {
   text-align: center; }
@@ -5888,5 +5889,38 @@ img {
 
 .collection-item {
   font-size: 30px; }
+
+.login-title {
+  text-align: center;
+  margin-left: 15px; }
+
+.login-form {
+  text-align: center; }
+
+.signup-form {
+  text-align: center; }
+
+.footer {
+  position: relative;
+  border-radius: 5px;
+  padding: 1rem;
+  background-color: #F8C43C; }
+
+.footer-icon {
+  max-height: 185px;
+  max-width: 185px; }
+
+.post-box {
+  min-height: 460px; }
+
+#journal-text {
+  background: url(http://i.stack.imgur.com/ynxjD.png);
+  font-family: 'Rock Salt', cursive;
+  background-position: -5px 1px;
+  height: 305px;
+  font: normal 14px verdana;
+  line-height: 25px;
+  padding: 2px 10px;
+  border: solid 1px #ddd; }
 
 /*# sourceMappingURL=app.css.map */
