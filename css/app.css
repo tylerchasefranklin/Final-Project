@@ -5766,6 +5766,9 @@ button.close {
 *::after {
   box-sizing: border-box; }
 
+html {
+  position: relative; }
+
 body {
   background-color: #6F7E8E; }
 
@@ -5838,6 +5841,9 @@ img {
   font-size: 20px;
   font-family: 'Permanent Marker', cursive; }
 
+#public-post {
+  margin-bottom: 40px; }
+
 #user-info {
   font-size: 25px; }
 
@@ -5888,9 +5894,11 @@ img {
   text-align: center; }
 
 .footer {
-  position: relative;
+  position: fixed;
+  top: 3;
+  bottom: 0;
   border-radius: 5px;
-  padding: 1rem;
+  overflow: hidden;
   background-color: #F8C43C; }
 
 .footer-icon {
@@ -5904,7 +5912,7 @@ img {
   min-height: 460px; }
 
 #profile {
-  min-height: 650px;
+  min-height: 850px;
   font-family: 'Gloria Hallelujah', cursive; }
 
 #journal-text {
@@ -5923,9 +5931,12 @@ img {
 
 #collection {
   font-family: 'Eczar', serif;
-  min-height: 650px; }
+  min-height: 850px; }
 
 #justforme {
-  min-height: 650px; }
+  min-height: 850px; }
+
+#message-board {
+  height: 100%; }
 
 /*# sourceMappingURL=app.css.map */
