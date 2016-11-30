@@ -130,7 +130,7 @@ var PublicMessageBoard = React.createClass({
       )
     });
     return (
-      <div className="container">
+      <div id="message-board" className="container">
         <h1 id="message-board">Public Message Board</h1>
         <div className="row">
           {posts}

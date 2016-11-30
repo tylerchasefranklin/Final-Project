@@ -62,7 +62,7 @@ var Footer = React.createClass({
   render: function(){
     var username = localStorage.username;
     return (
-        <div className="footer container-fluid">
+        <div id="footer" className="navbar-fixed-bottom footer container-fluid">
           <div className="row">
             <div className="icon-holder col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <a href={"#home/"}><img className="footer-icon first-icon img-rounded" src="../app/images/Post.png"></img></a>

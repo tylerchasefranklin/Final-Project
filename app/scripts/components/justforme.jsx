@@ -63,7 +63,7 @@ var GeneratorContainer = React.createClass({
     });
 
     var selectedQuote = quotes[Math.floor(Math.random() * quotes.length)];
-    this.setState({selectedQuote: selectedQuote});
+    // this.setState({selectedQuote: selectedQuote});
     this.setState({selectedContent: "''" + ($(selectedQuote.content).text()) + "''"});
     this.setState({selectedAuthor: '--' + selectedQuote.title});
   },
@@ -168,8 +168,8 @@ var GeneratorContainer = React.createClass({
                   </div>
                 </form>
               </div>
-              <form className="well col-xs-6 col-lg-6">
-                <div id="special-quote" onSubmit={this.handleSave}>
+              <form onSubmit={this.handleSave} className="well col-xs-6 col-lg-6">
+                <div id="special-quote">
                   {selectedContent}
                   <br></br>
                   <br></br>

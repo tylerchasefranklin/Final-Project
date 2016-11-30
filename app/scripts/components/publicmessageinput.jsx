@@ -46,17 +46,21 @@ var UserPostInput = React.createClass({
   render: function(){
     return (
       <TemplateComponent>
-        <div className="post-box col-lg-12">
-          <h1 className="post-title">Submit Your Own Positivity For Everyone To See!</h1>
-          <div className="col-lg-6 col-lg-offset-3">
-            <form onSubmit={this.handleSubmit} className="form-group">
-              <textarea onChange={this.handleInput} name="content" className="form-control" rows="10" type="text" value={this.state.content} id="user-public-post" placeholder="Submit Your Own Positivity For Everyone To See!"></textarea>
-              <button className="btn btn-primary">Send</button>
-              <label htmlFor="private" className="radio-inline">Private</label>
-                <input onClick={this.handleInput} type="radio" name="type" value="private"/>
-              <label htmlFor="public" className="radio-inline">Public</label>
-                <input onClick={this.handleInput} type="radio" name="type" value="public" />
-            </form>
+        <div>
+          <div>
+            <div className="post-box col-lg-12">
+              <h1 className="post-title">Submit Your Own Positivity For Everyone To See!</h1>
+              <div className="col-lg-6 col-lg-offset-3">
+                <form onSubmit={this.handleSubmit} className="form-group">
+                  <textarea onChange={this.handleInput} name="content" className="form-control" rows="10" type="text" value={this.state.content} id="user-public-post" placeholder="Submit Your Own Positivity For Everyone To See!"></textarea>
+                  <button className="btn btn-primary">Send</button>
+                  <label htmlFor="private" className="radio-inline">Private</label>
+                    <input onClick={this.handleInput} type="radio" name="type" value="private"/>
+                  <label htmlFor="public" className="radio-inline">Public</label>
+                    <input onClick={this.handleInput} type="radio" name="type" value="public" />
+                </form>
+              </div>
+            </div>
           </div>
         </div>
       </TemplateComponent>

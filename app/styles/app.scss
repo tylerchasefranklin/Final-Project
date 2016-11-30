@@ -24,6 +24,9 @@ $red : #ED3F36;
 *::after {
   box-sizing: border-box;
 }
+html {
+  position: relative;
+}
 
 body {
   background-color: #6F7E8E;
@@ -112,7 +115,7 @@ img {
 }
 
 #public-post {
-  // background-color: lightgray;
+  margin-bottom: 40px;
 }
 
 #user-info {
@@ -180,9 +183,10 @@ img {
 }
 
 .footer {
-  position: relative;
+  position: fixed; top: 3;
+  bottom: 0;
   border-radius: 5px;
-  padding: 1rem;
+  overflow: hidden;
   background-color: #F8C43C;
 }
 
@@ -202,7 +206,7 @@ img {
 }
 
 #profile {
-  min-height: 650px;
+  min-height: 850px;
   font-family: 'Gloria Hallelujah', cursive;
 }
 
@@ -224,9 +228,13 @@ img {
 
 #collection {
   font-family: 'Eczar', serif;
-  min-height: 650px;
+  min-height: 850px;
 }
 
 #justforme {
-  min-height: 650px;
+  min-height: 850px;
+}
+
+#message-board {
+  height: 100%;
 }

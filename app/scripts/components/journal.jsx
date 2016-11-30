@@ -30,7 +30,7 @@ var JournalComposition = React.createClass({
   render: function(){
     return (
       <TemplateComponent>
-        <div className="col-lg-12">
+        <div id="journal" className="col-lg-12">
           <h1 className="journal-title">Submit A Journal Entry!</h1>
           <br></br>
           <br></br>
@@ -77,11 +77,9 @@ var MyJournalEntries = React.createClass({
     var myEntries = myJournalEntries.map(function(entry){
       if(userId === entry.user.objectId){
         return (
-          <div key={entry.objectId}>
-            {entry.entry}
-            <br></br>
-            <br></br>
-            {entry.mood}
+          <div className="well" key={entry.objectId}>
+            <p>Entry: {entry.entry}</p>
+            <div>Mood: {entry.mood}</div>
           </div>
         )
       }
