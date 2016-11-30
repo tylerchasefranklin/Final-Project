@@ -5894,9 +5894,7 @@ img {
   text-align: center; }
 
 .footer {
-  position: fixed;
-  top: 3;
-  bottom: 0;
+  position: relative;
   border-radius: 5px;
   overflow: hidden;
   background-color: #F8C43C; }
@@ -5909,7 +5907,7 @@ img {
   text-align: center; }
 
 .post-box {
-  min-height: 460px; }
+  min-height: 850px; }
 
 #profile {
   min-height: 850px;
@@ -5938,4 +5936,5 @@ img {
 
 #message-board {
   height: 100%; }
+
 /*# sourceMappingURL=app.css.map */
