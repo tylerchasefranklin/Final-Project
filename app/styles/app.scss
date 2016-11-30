@@ -183,8 +183,7 @@ img {
 }
 
 .footer {
-  position: fixed; top: 3;
-  bottom: 0;
+  position: relative;
   border-radius: 5px;
   overflow: hidden;
   background-color: #F8C43C;
@@ -202,7 +201,7 @@ img {
 }
 
 .post-box {
-  min-height: 460px;
+  min-height: 850px;
 }
 
 #profile {
