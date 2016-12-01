@@ -267,15 +267,15 @@ img {
 
 .footer {
   position: relative;
-  border-radius: 5px;
   overflow: hidden;
   background-color: #F8C43C;
-  border: solid;
+  border-top: solid;
 }
 
 .footer-icon {
   max-height: 185px;
   max-width: 185px;
+  margin: auto;
   // margin-left: 25px;
   // margin-right: 140px;
 }

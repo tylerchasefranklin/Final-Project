@@ -89,7 +89,7 @@ var GeneratorContainer = React.createClass({
           <div className="row">
             <div className="col-xs-12 col-lg-12">
               <h1 className="special-quote-title">Looking For A Particular Kind of Quote?</h1>
-              <h5 className="special-quote-title">*Hit Submit Again For A Different Quote*</h5>
+              <h5 className="special-quote-title">*Hit "Find Me A Quote" Again For A Different Quote*</h5>
               <br></br>
               <br></br>
               <div className="col-xs-6 col-lg-6">

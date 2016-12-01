@@ -66,10 +66,10 @@ var Footer = React.createClass({
           <div className="row">
             <div className="icon-holder col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <a href={"#home/"}><img className="footer-icon first-icon img-rounded" src="images/Post.png"></img></a>
-              <a href={"#profile/"}><img className="col-lg-offset-1 footer-icon img-rounded" src="images/Profile.png"></img></a>
-              <a href={"#justforme/"}><img className="col-lg-offset-1 footer-icon img-rounded" src="images/Quote Gen.png"></img></a>
-              <a href={"#journal/"}><img className="col-lg-offset-1 footer-icon img-rounded" src="images/Journal.png"></img></a>
-              <a href={"#post/"}><img className="col-lg-offset-1 footer-icon img-rounded" src="images/Mood Tracker.png"></img></a>
+              <a href={"#profile/"}><img className="footer-icon img-rounded" src="images/Profile.png"></img></a>
+              <a href={"#justforme/"}><img className="footer-icon img-rounded" src="images/Quote Gen.png"></img></a>
+              <a href={"#journal/"}><img className="footer-icon img-rounded" src="images/Journal.png"></img></a>
+              <a href={"#post/"}><img className="footer-icon img-rounded" src="images/Mood Tracker.png"></img></a>
             </div>
           </div>
         </div>
