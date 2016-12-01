@@ -85,15 +85,19 @@ var GeneratorContainer = React.createClass({
     return (
       <TemplateComponent>
         <div id="justforme" className="container">
+          <img className="quote-icon col-lg-offset-5 col-md-offset-5 col-sm-offset-5 col-xs-offset-4 img-rounded" src="images/Quote Gen.png"></img>
           <div className="row">
             <div className="col-xs-12 col-lg-12">
-              <h1 className="special-quote-title">Find me something for me!</h1>
+              <h1 className="special-quote-title">Looking For A Particular Kind of Quote?</h1>
+              <h5 className="special-quote-title">*Hit Submit Again For A Different Quote*</h5>
+              <br></br>
+              <br></br>
               <div className="col-xs-6 col-lg-6">
                 <form className="form-group" onSubmit={this.handleSubmit}>
                   <h3>What is my current mood?</h3>
 
                   <SplitButton title="I'm feeling..." id="bg-nested-dropdown" bsStyle="info">
-                    <MenuItem type="mood" onSelect={this.handleSelect} data-option="happy" name="content/calm" eventKey={1}>content/calm</MenuItem>
+                    <MenuItem className="mood-item" type="mood" onSelect={this.handleSelect} data-option="happy" name="content/calm" eventKey={1}>content/calm</MenuItem>
                       <MenuItem divider />
                     <MenuItem type="mood" onSelect={this.handleSelect} data-option="dumb" name="dumb/inadequate" eventKey={2}>dumb/inadequate</MenuItem>
                       <MenuItem divider />
@@ -168,7 +172,7 @@ var GeneratorContainer = React.createClass({
                   </div>
                 </form>
               </div>
-              <form onSubmit={this.handleSave} className="well col-xs-6 col-lg-6">
+              <form onSubmit={this.handleSave} id="special-quote-box" className="well col-xs-6 col-lg-6">
                 <div id="special-quote">
                   {selectedContent}
                   <br></br>
@@ -181,6 +185,18 @@ var GeneratorContainer = React.createClass({
             </div>
           </div>
         </div>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
       </TemplateComponent>
 
     );

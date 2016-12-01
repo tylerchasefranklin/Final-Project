@@ -35,19 +35,20 @@ var SignUpForm = React.createClass({
   render: function(){
     return (
       <div className="col-lg-11 col-lg-offset-1 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3 signup-form">
-        <form id="signup" onSubmit={this.handleSubmit} className="well col-lg-3 col-lg-offset-4">
+        <img className="col-lg-2 footer-icon img-rounded" src="images/Journal.png"></img>
+        <form id="signup" onSubmit={this.handleSubmit} className="well col-xs-12 col-lg-3 col-lg-offset-2">
           <h2>Need an Account? Sign Up!</h2>
           <div className="form-group">
             <label htmlFor="username">Username</label>
-            <input className="form-control" onChange={this.handleUsername} value={this.state.username} name="username" id="username" type="username" placeholder="Username" />
+            <input className="signup-input form-control" onChange={this.handleUsername} value={this.state.username} name="username" id="username" type="username" placeholder="Username" />
           </div>
           <div className="form-group">
             <label htmlFor="password">Password</label>
-            <input className="form-control" onChange={this.handlePassword} value={this.state.password} name="password" id="password" type="password" placeholder="Password" />
+            <input className="signup-input form-control" onChange={this.handlePassword} value={this.state.password} name="password" id="password" type="password" placeholder="Password" />
           </div>
-
-          <input className="btn btn-primary" type="submit" value="Sign Me Up!" />
+          <input className="btn btn-primary" type="submit" value="I Want To Go!" />
         </form>
+        <img className="col-xs-12 col-lg-offset-2 col-xs-offset-1 login-icon img-rounded" src="images/Mood Tracker.png"></img>
       </div>
     );
   }
@@ -103,18 +104,20 @@ handleLogin: function(e){
   render: function(){
     return(
       <div className="col-lg-11 col-lg-offset-1 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3 login-form">
-        <form id="login" onSubmit={this.handleLogin} className="well col-lg-3 col-lg-offset-4">
+        <img className="col-lg-2 login-icon first-icon img-rounded" src="images/Post.png"></img>
+        <form id="login" onSubmit={this.handleLogin} className="well col-xs-12 col-lg-3 col-lg-offset-2">
           <h2>Please Login</h2>
           <div className="form-group">
             <label htmlFor="username">Username</label>
-            <input className="form-control" onChange={this.handleUsername} value={this.state.username} name="username" id="username" type="username" placeholder="Username" />
+            <input className="login-input form-control" onChange={this.handleUsername} value={this.state.username} name="username" id="username" type="username" placeholder="Username" />
           </div>
           <div className="form-group">
             <label htmlFor="password-login">Password</label>
-            <input className="form-control" onChange={this.handlePassword} value={this.state.password} name="password" id="password-login" type="password" placeholder="Password" />
+            <input className="login-input form-control" onChange={this.handlePassword} value={this.state.password} name="password" id="password-login" type="password" placeholder="Password" />
           </div>
-          <input className="btn btn-primary" type="submit" value="Login" />
+          <input className="btn btn-primary" type="submit" value="To My Happy Place!" />
         </form>
+        <img className="col-xs-12 col-lg-offset-2 col-xs-offset-1 login-icon img-rounded" src="images/Quote Gen.png"></img>
       </div>
     )
   }
@@ -146,7 +149,13 @@ var SignUpLoginContainer = React.createClass({
   render: function(){
     return (
       <div className="container-fluid">
-        <h1 className="login-title">Welcome To The Happy Place!</h1>
+        <h1 className="col-lg-11 login-title">Welcome To Your Happy Place!</h1>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
         <LoginForm />
         <SignUpForm signUpNewUser={this.signUpNewUser}/>
       </div>

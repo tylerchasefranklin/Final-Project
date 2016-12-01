@@ -99,23 +99,49 @@ img {
   font-size: 35px;
   font-family: 'Fredericka the Great', cursive;
   background-color: #53D9FD;
-  border: 0px;
+  border-color: #000000;
 }
 
 #message-board {
   text-align: center;
   font-family: 'Permanent Marker', cursive;
+  font-size: 50px;
+  text-decoration: underline;
+
 }
 
 #public-message {
   font-size: 20px;
   font-family: 'Permanent Marker', cursive;
-  // height: 150px;
-  // line-height: 150px;
 }
 
 #public-post {
   margin-bottom: 40px;
+  border-color: #000000;
+  border: solid 3px;
+  background-color: #F8C43C;
+}
+
+#login {
+  background-color: #53D9FD;
+  border-color: #FC3FA4;
+  border-radius: 25%;
+  font-family: 'Cabin Sketch', cursive;
+}
+
+#signup {
+  background-color: #3E8F17;
+  border-color: #F8C43C;
+  font-family: 'Cabin Sketch', cursive;
+  border-radius: 25%;
+}
+
+.login-input {
+
+}
+
+.signup-input {
+
 }
 
 #user-info {
@@ -124,16 +150,25 @@ img {
 
 .profile-item {
   color: #53D9FD;
+  border: solid 3px;
+  border-radius: 5px;
+  border-color: #000000;
 }
 
 .profile-item-name {
   color: #F8C43C;
+  text-decoration: underline;
 }
 
 #special-quote {
   height: 450px;
-  font-size: 35px;
-  font-family: 'Fredericka the Great', cursive;
+  font-size: 20px;
+  font-family: 'Special Elite', cursive;
+}
+
+#special-quote-box {
+  background-color: #F8C43C;
+  border-color: #000000;
 }
 
 .journal-title {
@@ -147,6 +182,20 @@ img {
 
 .journal-entries-title {
   text-align: center;
+  font-family: 'Rock Salt', cursive
+}
+
+.journal-entries {
+  background: url(http://i.stack.imgur.com/ynxjD.png);
+  background-size: contain;
+  background-position: -5px 15px;
+  background-repeat: repeat;
+  border-color: #000000;
+}
+
+.entry-well {
+  background-color: lightgray;
+  border-color: #000000;
 }
 
 .post-title {
@@ -155,6 +204,7 @@ img {
 
 .edit-profile-title {
   text-align: center;
+  font-family: 'Eczar', serif;
 }
 
 .special-quote-title {
@@ -167,11 +217,44 @@ img {
 
 .collection-item {
   font-size: 20px;
+  background-color: #F8C43C;
+  border-color: #000000;
+}
+
+.home-icon {
+  max-height: 185px;
+  max-width: 185px;
+}
+
+.profile-icon {
+  max-height: 185px;
+  max-width: 185px;
+}
+.quote-icon {
+  max-height: 185px;
+  max-width: 185px;
+}
+
+.journal-icon {
+  max-height: 185px;
+  max-width: 185px;
 }
 
 .login-title {
   text-align: center;
-  margin-left: 15px;
+  margin-left: 0px;
+  font-family: 'Cabin Sketch', cursive;
+  font-size: 50px;
+}
+
+.login-icon {
+  max-height: 185px;
+  max-width: 185px;
+}
+
+.post-icon {
+  max-height: 185px;
+  max-width: 185px;
 }
 
 .login-form {
@@ -187,6 +270,7 @@ img {
   border-radius: 5px;
   overflow: hidden;
   background-color: #F8C43C;
+  border: solid;
 }
 
 .footer-icon {
@@ -202,22 +286,49 @@ img {
 
 .post-box {
   min-height: 850px;
+  font-family: 'Permanent Marker', cursive;
+}
+
+.nav-link {
+  color: #F8C43C !important;
+}
+
+.post-area {
+  background-color: #F8C43C;
+  border-color: #000000;
 }
 
 #profile {
   min-height: 850px;
-  font-family: 'Gloria Hallelujah', cursive;
+  font-family: 'Eczar', serif;
+  line-height: 1.75;
+}
+
+#profile-image {
+  border: solid 3px;
+  border-color: #000000;
 }
 
 #journal-text {
   background: url(http://i.stack.imgur.com/ynxjD.png);
-  font-family: 'Rock Salt', cursive !important;
+  font-family: 'Rock Salt', cursive;
   background-position: -5px 1px;
   height: 305px;
-  font: normal 14px verdana;
+  font-size: 14px;
   line-height: 25px;
   padding: 2px 10px;
   border: solid 1px #ddd;
+  border-color: #000000;
+}
+
+.mood-input {
+  background: url(http://i.stack.imgur.com/ynxjD.png);
+  background-position: -5px 1px;
+  border-color: #000000;
+}
+
+#journal {
+  font-family: 'Rock Salt', cursive
 }
 
 #collection-button {
@@ -232,8 +343,21 @@ img {
 
 #justforme {
   min-height: 850px;
+  font-family: 'Special Elite', cursive;
 }
 
-#message-board {
-  height: 100%;
+input[type="file"] {
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  height: 10px;
+}
+
+#file-select {
+
+}
+
+.edit-profile {
+  font-family: 'Eczar', serif;
+  line-height: 1.75;
 }

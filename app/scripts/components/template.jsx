@@ -40,11 +40,11 @@ var Navbar = React.createClass({
 
           <div className="collapse navbar-collapse">
             <ul className="nav navbar-nav">
-              <li><a href={"#profile/"}>Profile</a></li>
-              <li><a href={"#myCollection/"}>My Collection</a></li>
-              <li><a href={"#justforme/"}>JustForMe</a></li>
-              <li><a href={"#journal/"}>Journal</a></li>
-              <li><a href={"#post/"}>Post</a></li>
+              <li className="nav-link"><a href={"#profile/"}>Profile</a></li>
+              <li className="nav-link"><a href={"#myCollection/"}>My Collection</a></li>
+              <li className="nav-link"><a href={"#justforme/"}>JustForMe</a></li>
+              <li className="nav-link"><a href={"#journal/"}>Journal</a></li>
+              <li className="nav-link"><a href={"#post/"}>Post</a></li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
               <li><a href="#profile/">Signed In As: {username[0].toUpperCase() + username.slice(1)}</a></li>

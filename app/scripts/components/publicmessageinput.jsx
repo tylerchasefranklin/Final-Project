@@ -46,13 +46,14 @@ var UserPostInput = React.createClass({
   render: function(){
     return (
       <TemplateComponent>
-        <div>
-          <div>
+        <div className="container">
+          <div className="row">
+            <img className="col-lg-offset-5 col-md-offset-5 col-sm-offset-5 col-xs-offset-4 post-icon img-rounded" src="images/Mood Tracker.png"></img>
             <div className="post-box col-lg-12">
-              <h1 className="post-title">Submit Your Own Positivity For Everyone To See!</h1>
-              <div className="col-lg-6 col-lg-offset-3">
+              <h1 className="post-title">Post For Everyone To See, Or Make A Personal Post!</h1>
+              <div className="">
                 <form onSubmit={this.handleSubmit} className="form-group">
-                  <textarea onChange={this.handleInput} name="content" className="form-control" rows="10" type="text" value={this.state.content} id="user-public-post" placeholder="Submit Your Own Positivity For Everyone To See!"></textarea>
+                  <textarea onChange={this.handleInput} name="content" className="post-area form-control" rows="10" type="text" value={this.state.content} id="user-public-post" placeholder="Type Your Post Here"></textarea>
                   <button className="btn btn-primary">Send</button>
                   <label htmlFor="private" className="radio-inline">Private</label>
                     <input onClick={this.handleInput} type="radio" name="type" value="private"/>

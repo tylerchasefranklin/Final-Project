@@ -64,7 +64,7 @@ var UploadProfilePic = React.createClass({
     return (
       <form onSubmit={function(e){e.preventDefault()}} action="/" id="profile" method="POST" encType="multipart/form-data">
         <label className="btn btn-default btn-file" htmlFor="file-select">
-          <input onChange={this.handlePicture} id="file-select" type="file" id="pic1" name="pic1" />
+          <input onChange={this.handlePicture} id="file-select" type="file" id="pic1" name="pic1" placeholder="Choose File">Choose Image File</input>
         </label>
       </form>
     );
@@ -101,9 +101,9 @@ var EditUserProfile = React.createClass({
     return (
       <div className="container-fluid">
         <div className="row">
-          <div className="col-xs-12">
+          <div className="edit-profile col-xs-12">
             <div className="col-xs-8 col-sm-4 col-md-5 col-lg-3">
-              <img className="img-rounded img-responsive" src={this.props.user.get('profileImage')}></img>
+              <img id="profile-image" className="img-rounded img-responsive" src={this.props.user.get('profileImage')}></img>
             <UploadProfilePic uploadPicture={this.props.uploadPicture} />
             </div>
               <div className="col-xs-12 col-sm-5 col-md-5 col-lg-6">

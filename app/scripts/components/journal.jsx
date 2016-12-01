@@ -30,25 +30,38 @@ var JournalComposition = React.createClass({
   render: function(){
     return (
       <TemplateComponent>
-        <div id="journal" className="col-lg-12">
-          <h1 className="journal-title">Submit A Journal Entry!</h1>
-          <br></br>
-          <br></br>
-          <div>
-            <form onSubmit={this.handleSubmit} className="col-lg-6 col-lg-offset-3 form-group">
-              <div className="">
-                <textarea id="journal-text" className="form-control" rows="10" type="text" onChange={this.handleInput} name="entry" value={this.state.entry} placeholder="Submit A Journal Entry"></textarea>
+        <img className="journal-icon col-lg-offset-5 col-md-offset-5 col-sm-offset-5 col-xs-offset-4 img-rounded" src="images/Journal.png"></img>
+        <div className="container-fluid">
+          <div className="row">
+            <div id="journal" className="col-lg-12">
+              <h1 className="journal-title">Submit A Journal Entry!</h1>
+              <br></br>
+              <br></br>
+              <div>
+                <form onSubmit={this.handleSubmit} className="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1 form-group">
+                  <div className="">
+                    <textarea id="journal-text" className="form-control" rows="10" type="text" onChange={this.handleInput} name="entry" value={this.state.entry} placeholder="Type Here"></textarea>
+                  </div>
+                  <div className="form-group">
+                    <h3 className="mood-title">My Current Mood</h3>
+                    <input className="mood-input form-control" onChange={this.handleInput} name="mood" value={this.state.mood} id="mood" type="mood"  placeholder="My Current Mood" />
+                  </div>
+                  <input className="btn btn-primary" type="submit" value="Submit"/>
+                </form>
               </div>
-              <div className="form-group">
-                <h3 className="mood-title">My Current Mood</h3>
-                <input className="form-control" onChange={this.handleInput} name="mood" value={this.state.mood} id="mood" type="mood"  placeholder="My Current Mood" />
-              </div>
-              <input className="btn btn-primary" type="submit" value="Submit"/>
-            </form>
+            </div>
           </div>
         </div>
-        <h2 className="journal-entries-title">My Journal Entries</h2>
-        <MyJournalEntries user={this.state.user}/>
+        <br></br>
+        <br></br>
+        <div className="container">
+          <div className="row">
+            <h2 className="journal-entries-title">My Journal Entries</h2>
+            <br></br>
+            <br></br>
+            <MyJournalEntries user={this.state.user}/>
+          </div>
+        </div>
       </TemplateComponent>
     )
   }
@@ -77,7 +90,7 @@ var MyJournalEntries = React.createClass({
     var myEntries = myJournalEntries.map(function(entry){
       if(userId === entry.user.objectId){
         return (
-          <div className="well" key={entry.objectId}>
+          <div className="well journal-entries" key={entry.objectId}>
             <p>Entry: {entry.entry}</p>
             <div>Mood: {entry.mood}</div>
           </div>
@@ -85,7 +98,7 @@ var MyJournalEntries = React.createClass({
       }
     })
     return (
-      <div className="well col-lg-12">
+      <div className="well entry-well col-lg-12">
         {myEntries}
       </div>
 

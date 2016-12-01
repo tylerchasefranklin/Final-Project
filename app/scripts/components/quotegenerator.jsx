@@ -16,6 +16,7 @@ var HomeContainer = React.createClass({
  render: function(){
    return (
      <TemplateComponent>
+       <img className="home-icon col-lg-offset-5 col-md-offset-5 col-sm-offset-5 col-xs-offset-4 img-rounded" src="images/Post.png"></img>
        <QuoteGenerator />
        <PublicMessageBoard />
      </TemplateComponent>
@@ -132,6 +133,7 @@ var PublicMessageBoard = React.createClass({
     return (
       <div id="message-board" className="container">
         <h1 id="message-board">Public Message Board</h1>
+        <br></br>
         <div className="row">
           {posts}
         </div>
